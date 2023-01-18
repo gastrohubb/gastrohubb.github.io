@@ -1,0 +1,40 @@
+<div class="osahan-profile">
+  <div class="bg-primary border-bottom px-3 pt-3 pb-5 d-flex align-items-center">
+    <a class="toggle togglew toggle-2" href="#"><span></span></a>
+    <h4 class="font-weight-bold m-0 text-white">Profile</h4>
+  </div>
+  <!-- profile -->
+  <div class="p-3 osahan-profile">
+
+    <app-brief-info-block
+      [imgSrc]="profileImage"
+      [title]="name"
+      [subtitle]="details"></app-brief-info-block>
+
+    <div class="bg-white rounded shadow mt-3 profile-details">
+
+      <app-modal-link-block
+        [title]="'Address'"
+        [subtitle]="'Click to add or edit an address'"
+        [linkedToModalId]="'addressForm'" />
+      <app-address-modal-form
+        [modalId]="'addressForm'" />
+      <app-hyper-link-block
+        [iconClass]="'feather-phone'"
+        [iconColorClass]="'bg-danger'"
+        [text]="'Contact'"
+        [hyperLink]="'/contact-us.html'"/>
+      <app-hyper-link-block
+        [iconClass]="'feather-info'"
+        [iconColorClass]="'bg-success'"
+        [text]="'Term of use'"
+        [hyperLink]="'/terms.html'"/>
+      <app-hyper-link-block
+        [iconClass]="'feather-lock'"
+        [iconColorClass]="'bg-warning'"
+        [text]="'Privacy policy'"
+        [hyperLink]="'/privacy.html'"/>
+
+    </div>
+  </div>
+</div>
