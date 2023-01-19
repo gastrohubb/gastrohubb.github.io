@@ -1,14 +1,14 @@
 <div class="osahan-menu-fotter fixed-bottom bg-white px-3 py-2 text-center">
   <div class="row">
-    <div class="col selected">
-      <a href="home.html" class="text-danger small font-weight-bold text-decoration-none">
-        <p class="h4 m-0"><i class="feather-home text-danger"></i></p>
+    <div [className]="homeColClass">
+      <a href="/" [className]="homeLinkClass">
+        <p class="h4 m-0"><i [className]="homeIconClass"></i></p>
         Home
       </a>
     </div>
-    <div class="col">
-      <a href="most_popular.html" class="text-dark small font-weight-bold text-decoration-none">
-        <p class="h4 m-0"><i class="feather-map-pin"></i></p>
+    <div [className]="myIssuesColClass">
+      <a href="/myIssues" [className]="myIssuesLinkClass">
+        <p class="h4 m-0"><i [className]="myIssuesIconClass"></i></p>
         Trending
       </a>
     </div>
@@ -20,15 +20,15 @@
       </div>
     </div>
 
-    <div class="col">
-      <a href="favorites.html" class="text-dark small font-weight-bold text-decoration-none">
-        <p class="h4 m-0"><i class="feather-heart"></i></p>
+    <div [className]="favoritesColClass">
+      <a href="/favorites" [className]="favoritesLinkClass">
+        <p class="h4 m-0"><i [className]="favoritesIconClass"></i></p>
         Favorites
       </a>
     </div>
-    <div class="col">
-      <a href="profile.html" class="text-dark small font-weight-bold text-decoration-none">
-        <p class="h4 m-0"><i class="feather-user"></i></p>
+    <div [className]="profileColClass">
+      <a href="/profile" [className]="profileLinkClass">
+        <p class="h4 m-0"><i [className]="profileIconClass"></i></p>
         Profile
       </a>
     </div>
