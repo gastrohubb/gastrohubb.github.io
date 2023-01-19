@@ -8,6 +8,7 @@ import { BriefInfoBlockComponent } from './component/brief-info-block/brief-info
 import { ModalLinkBlockComponent } from './component/modal-link-block/modal-link-block.component';
 import { HyperLinkBlockComponent } from './component/hyper-link-block/hyper-link-block.component';
 import { AddressModalFormComponent } from './component/address-modal-form/address-modal-form.component';
+import { IssuePageComponent } from './page/issue-page/issue-page.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AddressModalFormComponent } from './component/address-modal-form/addres
     ModalLinkBlockComponent,
     HyperLinkBlockComponent,
     AddressModalFormComponent,
+    IssuePageComponent,
   ],
   imports: [
     BrowserModule,

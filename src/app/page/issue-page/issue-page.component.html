@@ -1,0 +1,21 @@
+<div class="osahan-recepie">
+  <!-- recepie-header -->
+  <div class="recepie-header">
+    <img [src]="issue.photo" class="img-fluid w-100" alt="Issue image">
+  </div>
+  <!-- recepie-body -->
+  <div class="recepie-body">
+    <div class="p-3">
+      <h2 class="font-weight-bold" [innerText]="issue.description.substring(0, 10)">Issue heading</h2>
+      <h6 class="font-weight-bold mt-4">DESCRIPTION</h6>
+      <p class="text-muted" [innerText]="issue.description">Issue heading</p>
+      <h6 class="font-weight-bold mt-4">Location</h6>
+      <p class="text-muted" [innerText]="issue.city">Issue location</p>
+      <h6 class="font-weight-bold mt-4">Restaurant</h6>
+      <p class="text-muted" [innerText]="issue.customer">Issue customer</p>
+    </div>
+  </div>
+  <div class="fixed-bottom">
+    <a href="#" class="btn btn-primary btn-lg btn-block">Apply</a>
+  </div>
+</div>
