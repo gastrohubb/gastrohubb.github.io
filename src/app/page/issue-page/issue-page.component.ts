@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Issue} from "../../dto/issue";
+import {Issue} from "../../dto/Issue";
 
 @Component({
   selector: 'app-issue-page',

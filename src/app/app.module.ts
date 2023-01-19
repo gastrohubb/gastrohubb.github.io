@@ -12,6 +12,9 @@ import { IssuePageComponent } from './page/issue-page/issue-page.component';
 import { ListCardComponent } from './component/list-card/list-card.component';
 import { HomePageComponent } from './page/home-page/home-page.component';
 import { IssueListComponent } from './component/issue-list/issue-list.component';
+import { ProfileFormMasterComponent } from './component/profile-form-master/profile-form-master.component';
+import { ProfileFormCustomerComponent } from './component/profile-form-customer/profile-form-customer.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -25,10 +28,13 @@ import { IssueListComponent } from './component/issue-list/issue-list.component'
     ListCardComponent,
     HomePageComponent,
     IssueListComponent,
+    ProfileFormMasterComponent,
+    ProfileFormCustomerComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
