@@ -17,4 +17,8 @@ export class LoginPageComponent {
     alert("login " + this.email + " password " + this.password);
     this.router.navigate(['/profile'])
   }
+
+  redirectToRegister() {
+    this.router.navigate(['/register'])
+  }
 }

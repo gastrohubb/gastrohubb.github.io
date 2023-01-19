@@ -18,6 +18,7 @@ import {FormsModule} from "@angular/forms";
 import { IssueFormComponent } from './component/issue-form/issue-form.component';
 import { MenuBottomComponent } from './component/menu-bottom/menu-bottom.component';
 import { LoginPageComponent } from './page/login-page/login-page.component';
+import { RegisterPageComponent } from './page/register-page/register-page.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { LoginPageComponent } from './page/login-page/login-page.component';
     IssueFormComponent,
     MenuBottomComponent,
     LoginPageComponent,
+    RegisterPageComponent,
   ],
   imports: [
     BrowserModule,

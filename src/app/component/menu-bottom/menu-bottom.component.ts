@@ -27,7 +27,6 @@ export class MenuBottomComponent {
 
 
   ngOnInit(): void {
-    alert(window.location.pathname)
     switch (window.location.pathname) {
       case "/home":
         this.homeColClass = this.colClass + " selected";
