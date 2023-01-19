@@ -15,6 +15,7 @@ import { IssueListComponent } from './component/issue-list/issue-list.component'
 import { ProfileFormMasterComponent } from './component/profile-form-master/profile-form-master.component';
 import { ProfileFormCustomerComponent } from './component/profile-form-customer/profile-form-customer.component';
 import {FormsModule} from "@angular/forms";
+import { IssueFormComponent } from './component/issue-form/issue-form.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {FormsModule} from "@angular/forms";
     IssueListComponent,
     ProfileFormMasterComponent,
     ProfileFormCustomerComponent,
+    IssueFormComponent,
   ],
   imports: [
     BrowserModule,
