@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {RouterStateSnapshot} from "@angular/router";
 
 @Component({
   selector: 'app-menu-bottom',
@@ -26,8 +27,9 @@ export class MenuBottomComponent {
 
 
   ngOnInit(): void {
+    alert(window.location.pathname)
     switch (window.location.pathname) {
-      case "/":
+      case "/home":
         this.homeColClass = this.colClass + " selected";
         this.myIssuesColClass = this.colClass;
         this.favoritesColClass= this.colClass;

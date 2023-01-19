@@ -17,6 +17,7 @@ import { ProfileFormCustomerComponent } from './component/profile-form-customer/
 import {FormsModule} from "@angular/forms";
 import { IssueFormComponent } from './component/issue-form/issue-form.component';
 import { MenuBottomComponent } from './component/menu-bottom/menu-bottom.component';
+import { LoginPageComponent } from './page/login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MenuBottomComponent } from './component/menu-bottom/menu-bottom.compone
     ProfileFormCustomerComponent,
     IssueFormComponent,
     MenuBottomComponent,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,
