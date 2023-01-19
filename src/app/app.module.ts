@@ -9,6 +9,9 @@ import { ModalLinkBlockComponent } from './component/modal-link-block/modal-link
 import { HyperLinkBlockComponent } from './component/hyper-link-block/hyper-link-block.component';
 import { AddressModalFormComponent } from './component/address-modal-form/address-modal-form.component';
 import { IssuePageComponent } from './page/issue-page/issue-page.component';
+import { ListCardComponent } from './component/list-card/list-card.component';
+import { HomePageComponent } from './page/home-page/home-page.component';
+import { IssueListComponent } from './component/issue-list/issue-list.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { IssuePageComponent } from './page/issue-page/issue-page.component';
     HyperLinkBlockComponent,
     AddressModalFormComponent,
     IssuePageComponent,
+    ListCardComponent,
+    HomePageComponent,
+    IssueListComponent,
   ],
   imports: [
     BrowserModule,
