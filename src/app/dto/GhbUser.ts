@@ -6,6 +6,7 @@ export class GhbUser {
   password: any;
   sessionToken: any;
   imgUuid: any;
+  _links: any;
 
   constructor() {
   }
@@ -19,6 +20,7 @@ export class GhbUser {
     user.password = json.password;
     user.sessionToken = json.sessionToken;
     user.imgUuid = json.imgUuid;
+    user._links = json._links;
     return user;
   }
 

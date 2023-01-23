@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {GhbServiceClientService} from "../../service/ghb-service-client.service";
 import {catchError, Observable, throwError} from "rxjs";
+import {SessionUtilService} from "../../service/session-util.service";
 
 @Component({
   selector: 'app-login-page',
@@ -14,8 +15,10 @@ export class LoginPageComponent {
   errorMessage: any;
 
   constructor(private router: Router,
-              private ghbClient: GhbServiceClientService) {
+              private ghbClient: GhbServiceClientService,
+              private sessionService: SessionUtilService) {
   }
+
   signIn() {
     this.ghbClient.findUserByEmailAndPassword(this.email, this.password)
       .pipe(
@@ -30,10 +33,18 @@ export class LoginPageComponent {
           }
         }))
       .subscribe((user) => {
-        sessionStorage.setItem("user", JSON.stringify(user));
-        alert(sessionStorage.getItem("user"));
-        this.router.navigate(['/home'])
-      })
+        this.ghbClient.getUserById(user.userId)
+          .pipe(
+            catchError(error => {
+              this.errorMessage = "Server error";
+              return throwError(() => new Error(error));
+            }))
+          .subscribe(u => {
+              this.sessionService.putUser(u);
+              this.router.navigate(['/home'])
+            }
+          )
+      });
   }
 
   redirectToRegister() {

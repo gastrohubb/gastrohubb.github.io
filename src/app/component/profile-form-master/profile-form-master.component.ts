@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Master} from "../../dto/Master";
+import {GhbServiceClientService} from "../../service/ghb-service-client.service";
 
 @Component({
   selector: 'app-profile-form-master',
@@ -12,7 +13,15 @@ export class ProfileFormMasterComponent {
   @Input()
   modalId: any;
 
+  constructor(private ghbClient: GhbServiceClientService) {
+  }
+
   postMaster() {
-    window.alert(this.master.domain + " " + this.master.name + " " + this.master.experience + " " + this.master.workplace);
+    let master: Master = Master.masterOf(
+      this.master.domain,
+      this.master.name,
+      this.master.experience,
+      this.master.workplace);
+    this.ghbClient.saveNewMaster(master);
   }
 }

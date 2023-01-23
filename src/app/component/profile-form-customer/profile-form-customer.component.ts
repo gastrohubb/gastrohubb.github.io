@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {Master} from "../../dto/Master";
 import {Customer} from "../../dto/Customer";
+import {GhbServiceClientService} from "../../service/ghb-service-client.service";
 
 @Component({
   selector: 'app-profile-form-customer',
@@ -12,7 +12,11 @@ export class ProfileFormCustomerComponent {
   @Input()
   modalId: any;
 
+  constructor(private ghbClient:GhbServiceClientService) {
+  }
+
   save() {
-    window.alert(this.customer.name + " " + this.customer.phone + " " + this.customer.ownerName);
+    let customer: Customer = Customer.of(this.customer.name,this.customer.phone,this.customer.ownerName);
+    this.ghbClient.saveNewCustomer(customer);
   }
 }
