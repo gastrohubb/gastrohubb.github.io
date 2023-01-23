@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {GhbServiceClientService} from "../../service/ghb-service-client.service";
-import {GhbUser} from "../../dto/GhbUser";
 import {catchError, Observable, throwError} from "rxjs";
 import {NewUser} from "../../dto/NewUser";
 

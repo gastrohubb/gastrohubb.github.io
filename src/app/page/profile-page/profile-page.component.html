@@ -8,7 +8,7 @@
 
     <app-brief-info-block
       [imgSrc]="profileImage"
-      [title]="name"
+      [title]="user.userName"
       [subtitle]="details"></app-brief-info-block>
 
     <div class="bg-white rounded shadow mt-3 profile-details">
@@ -29,17 +29,17 @@
         [iconClass]="'feather-phone'"
         [iconColorClass]="'bg-danger'"
         [text]="'Contact'"
-        [hyperLink]="'/contact-us.html'"/>
+        [hyperLink]="'/contact-us.html'"></app-hyper-link-block>
       <app-hyper-link-block
         [iconClass]="'feather-info'"
         [iconColorClass]="'bg-success'"
         [text]="'Term of use'"
-        [hyperLink]="'/terms.html'"/>
+        [hyperLink]="'/terms.html'"></app-hyper-link-block>
       <app-hyper-link-block
         [iconClass]="'feather-lock'"
         [iconColorClass]="'bg-warning'"
         [text]="'Privacy policy'"
-        [hyperLink]="'/privacy.html'"/>
+        [hyperLink]="'/privacy.html'"></app-hyper-link-block>
       <app-hyper-link-block
         [iconClass]="'feather-log-out'"
         [iconColorClass]="'bg-primary'"

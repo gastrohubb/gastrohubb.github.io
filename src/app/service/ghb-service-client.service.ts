@@ -24,4 +24,8 @@ export class GhbServiceClientService {
   public findUserByEmailAndPassword(email: string, password: string): Observable<GhbUser> {
     return this.http.get<GhbUser>(this.uri + "/login?email=" + email + "&password=" + password);
   }
+
+  public updateUser(user: GhbUser): Observable<GhbUser> {
+    return this.http.patch<GhbUser>(this.uri+ "/ghbUsers/"+user.userId, user);
+  }
 }
