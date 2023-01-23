@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
+import {GhbServiceClientService} from "../../service/ghb-service-client.service";
+import {GhbUser} from "../../dto/GhbUser";
+import {catchError, Observable, throwError} from "rxjs";
 
 @Component({
   selector: 'app-register-page',
@@ -11,16 +14,69 @@ export class RegisterPageComponent {
   email: any;
   password: any;
   repeatPassword: any;
+  errorMessage: any;
+  emailChecked: boolean = false;
+  emailCheckPassed: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private ghbClient: GhbServiceClientService) {
   }
 
   signUp() {
-    alert("name " + this.name + " password " + this.password + " repeatPassword " + this.repeatPassword + " email " + this.email);
-    this.router.navigate(['/home'])
+
+    if (this.emailChecked && this.emailCheckPassed) {
+      let user = new GhbUser();
+      user.userName = this.name;
+      user.password = this.password;
+      user.email = this.email;
+      if (this.password === this.repeatPassword
+            && this.isNotEmpty(this.password)
+            && this.isNotEmpty(this.name)
+            && this.isNotEmpty(this.email)) {
+        this.ghbClient.saveNewUser(user);
+        this.router.navigate(['/home']);
+      } else if (this.password !== this.repeatPassword) {
+        this.errorMessage = "Passwords don't match";
+      } else if (this.emailChecked && !this.emailCheckPassed) {
+        this.errorMessage = this.email + " is occupied. Chose another email.";
+      } else if (!this.isNotEmpty(this.name)) {
+        this.errorMessage = "Please, enter your name";
+      } else if (!this.isNotEmpty(this.email)) {
+        this.errorMessage = "Please, enter email"
+      } else if (!this.isNotEmpty(this.password) || !this.isNotEmpty(this.repeatPassword)) {
+        this.errorMessage = "Please, enter password"
+      } else if (!this.emailChecked) {
+        this.signUp();
+      }
+    }
   }
 
   redirectToLoginForm() {
     this.router.navigate(['/'])
+  }
+
+  checkEmail(event: FocusEvent) {
+    const target = event.target as HTMLTextAreaElement;
+    let email = target.value;
+    this.ghbClient.findUserByEmail(email)
+      .pipe(
+        catchError(error => {
+          if (error.status === 404) {
+            this.emailChecked = true;
+            this.emailCheckPassed = true;
+            this.errorMessage = "";
+            return new Observable<never>();
+          } else {
+            return throwError(() => new Error(error));
+          }
+        }))
+      .subscribe(() => {
+        this.emailChecked = true;
+        this.emailCheckPassed = false;
+        this.errorMessage = this.email + " is occupied. Chose another email.";
+      })
+  }
+
+  private isNotEmpty(val: any) : boolean {
+    return val != null && val != undefined && val.length > 0;
   }
 }

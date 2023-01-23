@@ -19,6 +19,7 @@ import { IssueFormComponent } from './component/issue-form/issue-form.component'
 import { MenuBottomComponent } from './component/menu-bottom/menu-bottom.component';
 import { LoginPageComponent } from './page/login-page/login-page.component';
 import { RegisterPageComponent } from './page/register-page/register-page.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -42,9 +43,10 @@ import { RegisterPageComponent } from './page/register-page/register-page.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
