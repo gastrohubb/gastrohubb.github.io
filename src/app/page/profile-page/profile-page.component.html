@@ -40,6 +40,11 @@
         [iconColorClass]="'bg-warning'"
         [text]="'Privacy policy'"
         [hyperLink]="'/privacy.html'"/>
+      <app-hyper-link-block
+        [iconClass]="'feather-log-out'"
+        [iconColorClass]="'bg-primary'"
+        [text]="'Logout'"
+        [hyperLink]="'/login'" (click)="logout()"></app-hyper-link-block>
 
     </div>
   </div>

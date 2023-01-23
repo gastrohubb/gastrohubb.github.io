@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {GhbUser} from "../dto/GhbUser";
-import {catchError, Observable, throwError} from "rxjs";
+import {Observable} from "rxjs";
+import {NewUser} from "../dto/NewUser";
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,15 @@ export class GhbServiceClientService {
   constructor(private http: HttpClient) {
   }
 
-  public saveNewUser(user: GhbUser) {
-    return this.http.post(this.uri + "/ghbUsers", user).subscribe();
+  public registerUser(user: NewUser): Observable<GhbUser> {
+    return this.http.post<GhbUser>(this.uri + "/register", user);
   }
 
   public findUserByEmail(email: string): Observable<GhbUser> {
     return this.http.get<GhbUser>(this.uri + "/ghbUsers/search/findByEmail?email=" + email);
+  }
+
+  public findUserByEmailAndPassword(email: string, password: string): Observable<GhbUser> {
+    return this.http.get<GhbUser>(this.uri + "/login?email=" + email + "&password=" + password);
   }
 }

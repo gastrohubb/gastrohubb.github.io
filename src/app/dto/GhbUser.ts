@@ -4,4 +4,5 @@ export class GhbUser {
   locale: any;
   email: any;
   password: any;
+  sessionToken: any;
 }

@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {GhbServiceClientService} from "../../service/ghb-service-client.service";
 import {GhbUser} from "../../dto/GhbUser";
 import {catchError, Observable, throwError} from "rxjs";
+import {NewUser} from "../../dto/NewUser";
 
 @Component({
   selector: 'app-register-page',
@@ -18,22 +19,25 @@ export class RegisterPageComponent {
   emailChecked: boolean = false;
   emailCheckPassed: boolean = false;
 
-  constructor(private router: Router, private ghbClient: GhbServiceClientService) {
+  constructor(private router: Router,
+              private ghbClient: GhbServiceClientService) {
   }
 
   signUp() {
 
     if (this.emailChecked && this.emailCheckPassed) {
-      let user = new GhbUser();
+      let user = new NewUser();
       user.userName = this.name;
       user.password = this.password;
       user.email = this.email;
+
       if (this.password === this.repeatPassword
-            && this.isNotEmpty(this.password)
-            && this.isNotEmpty(this.name)
-            && this.isNotEmpty(this.email)) {
-        this.ghbClient.saveNewUser(user);
-        this.router.navigate(['/home']);
+        && this.isNotEmpty(this.password)
+        && this.isNotEmpty(this.name)
+        && this.isNotEmpty(this.email)) {
+
+        this.registerUserAndRedirect(user);
+
       } else if (this.password !== this.repeatPassword) {
         this.errorMessage = "Passwords don't match";
       } else if (this.emailChecked && !this.emailCheckPassed) {
@@ -48,6 +52,19 @@ export class RegisterPageComponent {
         this.signUp();
       }
     }
+  }
+
+  private registerUserAndRedirect(user: NewUser) {
+    this.ghbClient.registerUser(user)
+      .pipe(
+        catchError(error => {
+          this.errorMessage = "Fail to register new user. Try again later";
+          return throwError(() => new Error(error));
+        }))
+      .subscribe((user) => {
+        sessionStorage.setItem("user", JSON.stringify(user));
+        this.router.navigate(['/home'])
+      })
   }
 
   redirectToLoginForm() {
@@ -76,7 +93,7 @@ export class RegisterPageComponent {
       })
   }
 
-  private isNotEmpty(val: any) : boolean {
+  private isNotEmpty(val: any): boolean {
     return val != null && val != undefined && val.length > 0;
   }
 }

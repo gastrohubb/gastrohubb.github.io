@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {RouterStateSnapshot} from "@angular/router";
+import {GhbUser} from "../../dto/GhbUser";
+import {AuthGuardService} from "../../service/auth-guard.service";
 
 @Component({
   selector: 'app-menu-bottom',
@@ -24,9 +26,18 @@ export class MenuBottomComponent {
   myIssuesLinkClass: string = this.linkClass;
   favoritesLinkClass: string = this.linkClass;
   profileLinkClass: string = this.linkClass;
+  user: string = "";
 
+
+  constructor(private authGuardService: AuthGuardService) {
+  }
 
   ngOnInit(): void {
+    let userJson = sessionStorage.getItem("user");
+    if (userJson != null) {
+      this.user = userJson;
+    }
+
     switch (window.location.pathname) {
       case "/home":
         this.homeColClass = this.colClass + " selected";
@@ -83,7 +94,7 @@ export class MenuBottomComponent {
         this.profileColClass = this.colClass;
 
         this.homeLinkClass = this.linkClass
-        this.myIssuesLinkClass = this.linkClass.replaceAll("text-dark", this.textDanger);;
+        this.myIssuesLinkClass = this.linkClass.replaceAll("text-dark", this.textDanger);
         this.favoritesLinkClass = this.linkClass;
         this.profileLinkClass = this.linkClass;
 
@@ -93,5 +104,13 @@ export class MenuBottomComponent {
         this.profileIconClass = "feather-user";
         break;
     }
+  }
+
+  canActivateOrRedirectToLogin(): boolean {
+    return this.authGuardService.canActivateOrRedirectToLogin();
+  }
+
+  canActivateOrNot(): boolean {
+    return this.authGuardService.canActivateOrNot();
   }
 }
