@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, HostListener, Input} from '@angular/core';
 import {Issue} from "../../dto/Issue";
+import {GhbServiceClientService} from "../../service/ghb-service-client.service";
 
 @Component({
   selector: 'app-issue-list',
@@ -7,31 +8,48 @@ import {Issue} from "../../dto/Issue";
   styleUrls: ['./issue-list.component.css']
 })
 export class IssueListComponent {
-  issues: Issue[];
-
-
-  constructor() {
-    let issue1 = new Issue();
-    issue1.description = "description 1";
-    issue1.customer = "customer 1";
-
-    let issue2 = new Issue();
-    issue2.description = "description 2";
-    issue2.customer = "customer 2";
-
-    let issue3 = new Issue();
-    issue3.description = "description 3";
-    issue3.customer = "customer 3";
-
-    let issue4 = new Issue();
-    issue4.description = "description 4";
-    issue4.customer = "customer 4";
-
-    let issue5 = new Issue();
-    issue5.description = "description 5";
-    issue5.customer = "customer 5";
-
-    this.issues = [issue1, issue2, issue3, issue4, issue5];
-  }
-
+  @Input()
+  issues: Issue[] = [];
+  // scrollThreshold: number = 1000;
+  // currentPage: number = 0;
+  // totalPages: number = 0;
+  //
+  //
+  // constructor(private ghbClient: GhbServiceClientService) {
+  // }
+  //
+  // ngOnInit() {
+  //   this.ghbClient.getPageOfIssues(this.currentPage++)
+  //     .pipe()
+  //     .subscribe(page => {
+  //       this.totalPages = page.page.totalPages;
+  //       let embedded = page._embedded;
+  //       let issuesList: Issue[] = embedded.issues as Issue[];
+  //       issuesList.forEach((item) => this.issues.push(item));
+  //     });
+  // }
+  //
+  // @HostListener('window:scroll', ['$event'])
+  // onWindowScroll(event: any) {
+  //   console.log(window.scrollY + this.scrollThreshold)
+  //   if (this.isScrolledToTheBottom() && this.hasNextPage()) {
+  //     this.scrollThreshold = this.scrollThreshold / 10;
+  //     this.ghbClient.getPageOfIssues(this.currentPage++)
+  //       .pipe()
+  //       .subscribe(page => {
+  //         let embedded = page._embedded;
+  //         let issuesList: Issue[] = embedded.issues as Issue[];
+  //         issuesList.forEach((item) => this.issues.push(item));
+  //         this.scrollThreshold = this.scrollThreshold * 10;
+  //       });
+  //   }
+  // }
+  //
+  // private isScrolledToTheBottom(): boolean {
+  //   return window.scrollY + this.scrollThreshold > document.body.scrollHeight;
+  // }
+  //
+  // private hasNextPage(): boolean {
+  //   return this.currentPage < this.totalPages;
+  // }
 }

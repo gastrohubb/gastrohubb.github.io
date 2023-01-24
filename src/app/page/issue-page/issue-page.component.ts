@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {Issue} from "../../dto/Issue";
+import {GhbServiceClientService} from "../../service/ghb-service-client.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-issue-page',
@@ -7,16 +9,29 @@ import {Issue} from "../../dto/Issue";
   styleUrls: ['./issue-page.component.css']
 })
 export class IssuePageComponent {
-  issue: Issue;
+  issue: Issue = new Issue();
+  tries: number = 0; //todo: it not loading full data from first attempt. should be fixed.
 
-  constructor() {
-    this.issue = new Issue();
-    this.issue.issueId = null;
-    this.issue.description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.";
-    this.issue.photo = "./assets/tempimg/trending1.png";
-    this.issue.city = "Gdansk";
-    this.issue.issueStatus = "New";
-    this.issue.timestamp = "2023-02-01";
-    this.issue.customer = "Pizza Caprichoza";
+  constructor(private ghbClient: GhbServiceClientService,
+              private router: ActivatedRoute,
+              private navigate: Router) {
+  }
+
+  ngOnInit() {
+    let id = this.router.snapshot.paramMap.get('id');
+    if (id != null) {
+      this.ghbClient.findIssueByIdFull(id)
+        .subscribe(issue => {
+          this.issue = issue;
+          if(!this.issue.photo && this.tries++ < 5) {
+            console.log("fail to load image, tries left " + (5 - this.tries));
+            setTimeout(() => {
+              console.log('sleep');
+              this.ngOnInit();
+              // And any other code that should run only after 5s
+            }, 1000);
+          }
+        })
+    }
   }
 }

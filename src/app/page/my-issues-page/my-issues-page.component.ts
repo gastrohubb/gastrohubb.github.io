@@ -1,24 +1,26 @@
 import {Component, HostListener} from '@angular/core';
 import {Issue} from "../../dto/Issue";
 import {GhbServiceClientService} from "../../service/ghb-service-client.service";
+import {SessionUtilService} from "../../service/session-util.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  selector: 'app-my-issues-page',
+  templateUrl: './my-issues-page.component.html',
+  styleUrls: ['./my-issues-page.component.css']
 })
-export class HomePageComponent {
+export class MyIssuesPageComponent {
   issues: Issue[] = [];
   scrollThreshold: number = 1000;
   currentPage: number = 0;
   totalPages: number = 0;
   constructor(private ghbClient: GhbServiceClientService,
+              private sessionService: SessionUtilService,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.ghbClient.getPageOfIssues(this.currentPage++)
+    this.ghbClient.getPageOfIssuesForByUserId(this.currentPage++, this.sessionService.getUser().userId)
       .pipe()
       .subscribe(page => {
         this.totalPages = page.page.totalPages;
@@ -33,7 +35,7 @@ export class HomePageComponent {
     console.log(window.scrollY + this.scrollThreshold)
     if (this.isScrolledToTheBottom() && this.hasNextPage()) {
       this.scrollThreshold = this.scrollThreshold / 10;
-      this.ghbClient.getPageOfIssues(this.currentPage++)
+      this.ghbClient.getPageOfIssuesForByUserId(this.currentPage++, this.sessionService.getUser().userId)
         .pipe()
         .subscribe(page => {
           let embedded = page._embedded;
@@ -53,10 +55,6 @@ export class HomePageComponent {
   }
 
   navigate() {
-    this.ghbClient.getPageOfIssues(0).pipe()
-      .subscribe(() => {
-        this.ghbClient.getPageOfIssues(0).pipe().subscribe(() => {
-        })
-      });
+    this.router.navigate(['home']);
   }
 }

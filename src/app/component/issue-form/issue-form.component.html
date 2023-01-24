@@ -1,34 +1,49 @@
-<div class="modal fade" [id]="modalId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--<div class="modal fade" [id]="modalId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<div class=""  tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Issue details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="back()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-
+        <h3 class="text-danger">{{errorMessage}}</h3>
         <div class="form-row">
           <div class="col-md-12 form-group">
             <label class="form-label">What need to be done</label>
-            <textarea [(ngModel)]="issue.description" placeholder="Enter issue details here" type="text" class="form-control" ></textarea>
+            <textarea [(ngModel)]="issue.description"
+                      placeholder="Enter issue details here"
+                      type="text"
+                      class="form-control"
+                      required></textarea>
           </div>
           <div class="col-md-12 form-group">
             <label class="form-label">In which city it should be done ?</label>
-            <input [(ngModel)]="issue.city"  placeholder="Enter city here" type="text" class="form-control" />
+            <input [(ngModel)]="issue.city"
+                   placeholder="Enter city here"
+                   type="text"
+                   class="form-control"
+                   required/>
+          </div>
+            <input type="file" (change)="selectFile($event)" placeholder="Upload file">
+          <div *ngIf="imgSrc">
+            <img [src]="imgSrc" class="square-center-cropped">
           </div>
         </div>
       </div>
 
       <div class="modal-footer p-0 border-0">
         <div class="col-6 m-0 p-0">
-          <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal">Close</button>
+          <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal" (click)="back()">Close</button>
         </div>
         <div class="col-6 m-0 p-0">
-          <button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal" (click)="save()">Save</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal" (click)="save()">Save
+          </button>
         </div>
       </div>
     </div>
   </div>
 </div>
+

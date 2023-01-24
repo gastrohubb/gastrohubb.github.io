@@ -9,7 +9,7 @@ export class FileUploadService {
 
   constructor(private http: HttpClient) { }
 
-  public uploadFile(url: string, file: File): Observable<any> {
+  public uploadFile(url: string, file: File): Observable<string> {
     let formData = new FormData();
     formData.append('multipartFile', file);
 

@@ -6,6 +6,8 @@ import {NewUser} from "../dto/NewUser";
 import {Master} from "../dto/Master";
 import {SessionUtilService} from "./session-util.service";
 import {Customer} from "../dto/Customer";
+import {Issue} from "../dto/Issue";
+import {FileUploadService} from "./file-upload.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,8 @@ export class GhbServiceClientService {
   private uri: string = "http://localhost:8080";
 
   constructor(private http: HttpClient,
-              private sessionService: SessionUtilService) {
+              private sessionService: SessionUtilService,
+              private fileUploadService: FileUploadService) {
   }
 
   public registerUser(user: NewUser): Observable<GhbUser> {
@@ -45,6 +48,26 @@ export class GhbServiceClientService {
     return this.http.patch<GhbUser>(this.uri + "/ghbUsers/" + user.userId, user);
   }
 
+  public getPageOfIssuesForByUserId(page: number, userId: string):Observable<any> {
+    return this.http.get<Issue>(this.uri + "/issues/search/findAllByCustomer_GhbUser_UserId?projection=full&userId="+ userId+"&size=20&page=" + page);
+  }
+
+  public getPageOfIssues(page: number):Observable<any> {
+    return this.http.get<Issue>(this.uri + "/issues/?projection=full&size=20&page=" + page);
+  }
+
+  public findIssueById(uuid: string): Observable<Issue> {
+    return this.http.get<Issue>(this.uri + "/issues/" + uuid);
+  }
+
+  public findIssueByIdFull(uuid: string): Observable<Issue> {
+    return this.http.get<Issue>(this.uri + "/issues/" + uuid + "?projection=full");
+  }
+
+  public updateIssue(issue: Issue) {
+    this.http.put<Issue>(this.uri + "/issues/" + issue.issueId, issue).subscribe();
+  }
+
   public saveNewMaster(master: Master) {
     this.http.post<any>(this.uri + "/masters/", master)
       .pipe() //todo: handle exception
@@ -61,9 +84,7 @@ export class GhbServiceClientService {
               console.log("post assotiated link Error:", error);
               return new Observable<never>();
             }))
-          .subscribe(result => {
-            alert(result);
-          });
+          .subscribe();
       })
   }
 
@@ -83,8 +104,70 @@ export class GhbServiceClientService {
               console.log("post assotiated link Error:", error);
               return new Observable<never>();
             }))
-          .subscribe(result => {
-            alert(result);
+          .subscribe();
+      })
+  }
+
+  // todo: preferable way - to have all process in one method and return issueId;
+  private saveNewIssue(newIssue: Issue, files: FileList) {
+    this.saveIssue(newIssue)
+      .pipe(catchError(error => {
+        console.log("error saving issue:", error);
+        return new Observable<never>();
+      }))
+      .subscribe(issue => {
+        this.associateCustomerToIssue(issue.issueId);
+        this.saveIssueImages(files, issue.issueId);
+      })
+  }
+
+  public saveIssue(newIssue: Issue): Observable<Issue> {
+    return this.http.post<Issue>(this.uri + "/issues/", newIssue);
+  }
+
+  public associateCustomerToIssue(issueId: string) {
+    this.findIssueById(issueId)
+      .pipe()
+      .subscribe(issue => {
+        let issueToCustomerEndpoint: string = issue._links.customer.href;
+        let substringUrlFrom = issueToCustomerEndpoint.indexOf("{?projection}");
+        issueToCustomerEndpoint = issueToCustomerEndpoint.substring(0, substringUrlFrom);
+        let user: GhbUser = this.sessionService.getUser();
+        this.findCustomerByGhbUserId(user.userId)
+          .pipe(catchError(error => {
+            console.log("findCustomerByGhbUserId Error:", error);
+            return new Observable<never>();
+          }))
+          .subscribe(customer => {
+            let customerLink = customer._links.self.href;
+            let headers = new HttpHeaders();
+            headers = headers.set('content-type', 'text/uri-list');
+            this.http.put(issueToCustomerEndpoint, customerLink, {headers})
+              .pipe(
+                catchError(error => {
+                  console.log("post assotiated link Error:", error);
+                  return new Observable<never>();
+                }))
+              .subscribe();
+          })
+      })
+  }
+
+  public saveIssueImages(files: FileList, issueId: string) {
+    this.fileUploadService.uploadFile(this.uri + "/files", files[0])
+      .pipe(catchError(error => {
+        console.log("save issue image error:", error);
+        return new Observable<never>();
+      }))
+      .subscribe(id => {
+        this.findIssueById(issueId)
+          .pipe(catchError(error => {
+            console.log("save issue image error:", error);
+            return new Observable<never>();
+          }))
+          .subscribe(issue => {
+            issue.photo = this.uri + "/files/" + id;
+            this.updateIssue(issue);
           });
       })
   }

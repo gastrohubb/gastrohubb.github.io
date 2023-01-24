@@ -20,6 +20,8 @@ import { MenuBottomComponent } from './component/menu-bottom/menu-bottom.compone
 import { LoginPageComponent } from './page/login-page/login-page.component';
 import { RegisterPageComponent } from './page/register-page/register-page.component';
 import {HttpClientModule} from "@angular/common/http";
+import { MyIssuesPageComponent } from './page/my-issues-page/my-issues-page.component';
+import { IssueFormPageComponent } from './page/issue-form-page/issue-form-page.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import {HttpClientModule} from "@angular/common/http";
     MenuBottomComponent,
     LoginPageComponent,
     RegisterPageComponent,
+    MyIssuesPageComponent,
+    IssueFormPageComponent,
   ],
   imports: [
     BrowserModule,

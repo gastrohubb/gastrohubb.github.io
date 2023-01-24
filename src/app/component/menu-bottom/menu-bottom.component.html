@@ -14,7 +14,8 @@
     </div>
     <div (click)="canActivateOrRedirectToLogin()" class="col bg-white rounded-circle mt-n4 px-3 py-2">
       <div class="bg-danger rounded-circle mt-n0 shadow">
-        <a data-toggle="modal" [attr.data-target]="'#issueForm'" class="text-white small font-weight-bold text-decoration-none">
+<!--        <a data-toggle="modal" [attr.data-target]="'#issueForm'" class="text-white small font-weight-bold text-decoration-none">-->
+        <a href="/issueForm" class="text-white small font-weight-bold text-decoration-none">
           <i class="feather-shopping-cart"></i>
         </a>
       </div>
@@ -34,8 +35,6 @@
     </div>
   </div>
 </div>
-<p>{{user}}</p>
-<p>{{canActivateOrNot()}}</p>
-<div *ngIf="canActivateOrNot()">
-  <app-issue-form [modalId]="'issueForm'"></app-issue-form>
-</div>
+<!--<div *ngIf="canActivateOrNot()">-->
+<!--  <app-issue-form [modalId]="'issueForm'"></app-issue-form>-->
+<!--</div>-->
