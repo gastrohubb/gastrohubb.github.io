@@ -3,6 +3,8 @@ import {Router} from "@angular/router";
 import {GhbUser} from "../../dto/GhbUser";
 import {GhbServiceClientService} from "../../service/ghb-service-client.service";
 import {SessionUtilService} from "../../service/session-util.service";
+import {Master} from "../../dto/Master";
+import {Customer} from "../../dto/Customer";
 
 @Component({
   selector: 'app-profile-page',
@@ -14,6 +16,8 @@ export class ProfilePageComponent {
   name: any = "First and Last Name";
   details: any = "Short description for specialization";
 
+  master: Master = new Master();
+  customer: Customer = new Customer();
   user: GhbUser = new GhbUser();
 
   constructor(private router: Router,
@@ -25,6 +29,14 @@ export class ProfilePageComponent {
     if(!user.isEmpty()) {
       this.user = user;
     }
+
+    this.ghbService.findMasterByGhbUserId(user.userId)
+      .pipe()
+      .subscribe(m => this.master = m);
+
+    this.ghbService.findCustomerByGhbUserId(user.userId)
+      .pipe()
+      .subscribe(c => this.customer = c);
   }
 
   logout() {

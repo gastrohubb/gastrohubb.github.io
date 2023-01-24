@@ -33,6 +33,14 @@ export class GhbServiceClientService {
     return this.http.get<GhbUser>(this.uri + "/login?email=" + email + "&password=" + password);
   }
 
+  public findMasterByGhbUserId(id: string): Observable<Master> {
+    return this.http.get<Master>(this.uri + "/masters/search/findByGhbUser_UserId?ghbUserId=" + id);
+  }
+
+  public findCustomerByGhbUserId(id: string): Observable<Customer> {
+    return this.http.get<Customer>(this.uri + "/customers/search/findByGhbUser_UserId?ghbUserId=" + id);
+  }
+
   public updateUser(user: GhbUser): Observable<GhbUser> {
     return this.http.patch<GhbUser>(this.uri + "/ghbUsers/" + user.userId, user);
   }
