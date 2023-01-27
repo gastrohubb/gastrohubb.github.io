@@ -8,16 +8,20 @@ import {SessionUtilService} from "./session-util.service";
 import {Customer} from "../dto/Customer";
 import {Issue} from "../dto/Issue";
 import {FileUploadService} from "./file-upload.service";
+import {ConfigService} from "./config.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GhbServiceClientService {
-  private uri: string = "http://localhost:8080";
+  private readonly uri: string;
 
   constructor(private http: HttpClient,
               private sessionService: SessionUtilService,
-              private fileUploadService: FileUploadService) {
+              private fileUploadService: FileUploadService,
+              private config: ConfigService) {
+
+      this.uri = config.apiUrl();
   }
 
   public registerUser(user: NewUser): Observable<GhbUser> {

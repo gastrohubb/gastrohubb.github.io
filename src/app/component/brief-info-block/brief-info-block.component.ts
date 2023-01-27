@@ -4,6 +4,7 @@ import {catchError, Observable} from "rxjs";
 import {GhbServiceClientService} from "../../service/ghb-service-client.service";
 import {SessionUtilService} from "../../service/session-util.service";
 import {GhbUser} from "../../dto/GhbUser";
+import {ConfigService} from "../../service/config.service";
 
 @Component({
   selector: 'app-brief-info-block',
@@ -11,7 +12,7 @@ import {GhbUser} from "../../dto/GhbUser";
   styleUrls: ['./brief-info-block.component.css']
 })
 export class BriefInfoBlockComponent {
-  private ENDPOINT = "http://localhost:8080/files";
+  private readonly ENDPOINT: string;
   @Input()
   imgSrc: any;
   @Input()
@@ -23,7 +24,10 @@ export class BriefInfoBlockComponent {
 
   constructor(private fileUploadService: FileUploadService,
               private userClient: GhbServiceClientService,
-              private sessionService: SessionUtilService) {
+              private sessionService: SessionUtilService,
+              private config: ConfigService) {
+
+    this.ENDPOINT = config.apiUrl() + "/files";
   }
 
   ngOnInit() {

@@ -2,6 +2,7 @@ import {Component, HostListener} from '@angular/core';
 import {Issue} from "../../dto/Issue";
 import {GhbServiceClientService} from "../../service/ghb-service-client.service";
 import {Router} from "@angular/router";
+import {ConfigService} from "../../service/config.service";
 
 @Component({
   selector: 'app-home-page',
@@ -13,11 +14,14 @@ export class HomePageComponent {
   scrollThreshold: number = 1000;
   currentPage: number = 0;
   totalPages: number = 0;
+  config: any;
   constructor(private ghbClient: GhbServiceClientService,
-              private router: Router) {
+              private router: Router,
+              private configService: ConfigService) {
   }
 
   ngOnInit() {
+
     this.ghbClient.getPageOfIssues(this.currentPage++)
       .pipe()
       .subscribe(page => {
