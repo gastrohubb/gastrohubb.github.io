@@ -15,7 +15,7 @@ export class ConfigService {
     }
 
     public apiUrl(): string {
-        return "http://54.93.221.63:8080";
+        return "https://gastro.tutrit.com/";
     }
 }
 
