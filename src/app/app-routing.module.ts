@@ -8,6 +8,7 @@ import {RegisterPageComponent} from "./page/register-page/register-page.componen
 import {AuthGuardService} from "./service/auth-guard.service";
 import {MyIssuesPageComponent} from "./page/my-issues-page/my-issues-page.component";
 import {IssueFormComponent} from "./component/issue-form/issue-form.component";
+import {FavoritsPageComponent} from "./page/favorits-page/favorits-page.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
@@ -18,7 +19,7 @@ const routes: Routes = [
   {path: 'issueForm', component: IssueFormComponent, canActivate: [AuthGuardService]},
   {path: 'myIssues', component: MyIssuesPageComponent, canActivate: [AuthGuardService]},
   {path: 'issues/:id', component: IssuePageComponent, canActivate: [AuthGuardService]},
-  {path: 'favorites', component: ProfilePageComponent, canActivate: [AuthGuardService]},
+  {path: 'favorites', component: FavoritsPageComponent, canActivate: [AuthGuardService]},
 ];
 
 @NgModule({

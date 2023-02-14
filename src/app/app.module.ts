@@ -22,6 +22,8 @@ import { RegisterPageComponent } from './page/register-page/register-page.compon
 import {HttpClientModule} from "@angular/common/http";
 import { MyIssuesPageComponent } from './page/my-issues-page/my-issues-page.component';
 import { IssueFormPageComponent } from './page/issue-form-page/issue-form-page.component';
+import { PageHeaderComponent } from './component/page-header/page-header.component';
+import { FavoritsPageComponent } from './page/favorits-page/favorits-page.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { IssueFormPageComponent } from './page/issue-form-page/issue-form-page.c
     RegisterPageComponent,
     MyIssuesPageComponent,
     IssueFormPageComponent,
+    PageHeaderComponent,
+    FavoritsPageComponent,
   ],
   imports: [
     BrowserModule,
