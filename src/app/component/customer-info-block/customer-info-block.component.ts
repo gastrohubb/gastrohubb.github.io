@@ -1,21 +1,22 @@
 import {Component, Input} from '@angular/core';
+import {Master} from "../../dto/Master";
+import {GhbUser} from "../../dto/GhbUser";
 import {FileUploadService} from "../../service/file-upload.service";
 import {GhbServiceClientService} from "../../service/ghb-service-client.service";
 import {SessionUtilService} from "../../service/session-util.service";
 import {ConfigService} from "../../service/config.service";
-import {GhbUser} from "../../dto/GhbUser";
 import {catchError, Observable} from "rxjs";
-import {Master} from "../../dto/Master";
+import {Customer} from "../../dto/Customer";
 
 @Component({
-  selector: 'app-master-info-block',
-  templateUrl: './master-info-block.component.html',
-  styleUrls: ['./master-info-block.component.css']
+  selector: 'app-customer-info-block',
+  templateUrl: './customer-info-block.component.html',
+  styleUrls: ['./customer-info-block.component.css']
 })
-export class MasterInfoBlockComponent {
+export class CustomerInfoBlockComponent {
   private readonly ENDPOINT: string;
   @Input()
-  master: Master = new Master();
+  customer: Customer = new Customer();
   @Input()
   user: GhbUser = new GhbUser();
 

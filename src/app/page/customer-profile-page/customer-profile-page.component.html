@@ -1,1 +1,44 @@
-<p>customer-profile-page works!</p>
+<div class="osahan-profile">
+    <div class="bg-primary border-bottom px-3 pt-3 pb-5 d-flex align-items-center">
+        <a class="toggle togglew toggle-2" href="#"><span></span></a>
+        <h4 class="font-weight-bold m-0 text-white">Restaurant Profile</h4>
+    </div>
+    <!-- profile -->
+    <div class="p-3 osahan-profile">
+
+        <app-customer-info-block
+                [user]="user"
+                [customer]="customer"></app-customer-info-block>
+
+        <div class="bg-white rounded shadow mt-3 profile-details">
+            <app-modal-link-block
+                    [title]="'My info - Master'"
+                    [subtitle]="'Click to add or edit'"
+                    [linkedToModalId]="'masterForm'"></app-modal-link-block>
+            <app-profile-form-master
+                    [modalId]="'masterForm'"> </app-profile-form-master>
+            <app-hyper-link-block
+                    [iconClass]="'feather-phone'"
+                    [iconColorClass]="'bg-danger'"
+                    [text]="'Contact'"
+                    [hyperLink]="'/contact-us.html'"></app-hyper-link-block>
+            <app-hyper-link-block
+                    [iconClass]="'feather-info'"
+                    [iconColorClass]="'bg-success'"
+                    [text]="'Term of use'"
+                    [hyperLink]="'/terms.html'"></app-hyper-link-block>
+            <app-hyper-link-block
+                    [iconClass]="'feather-lock'"
+                    [iconColorClass]="'bg-warning'"
+                    [text]="'Privacy policy'"
+                    [hyperLink]="'/privacy.html'"></app-hyper-link-block>
+            <app-hyper-link-block
+                    [iconClass]="'feather-log-out'"
+                    [iconColorClass]="'bg-primary'"
+                    [text]="'Logout'"
+                    [hyperLink]="'/login'" (click)="logout()"></app-hyper-link-block>
+        </div>
+    </div>
+</div>
+<app-menu-bottom [appContext]="appContext"></app-menu-bottom>
+

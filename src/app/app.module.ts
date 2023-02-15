@@ -30,6 +30,7 @@ import { MasterProfilePageComponent } from './page/master-profile-page/master-pr
 import { CustomerProfilePageComponent } from './page/customer-profile-page/customer-profile-page.component';
 import { MasterInfoBlockComponent } from './component/master-info-block/master-info-block.component';
 import { RoleForkComponent } from './page/role-fork/role-fork.component';
+import { CustomerInfoBlockComponent } from './component/customer-info-block/customer-info-block.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { RoleForkComponent } from './page/role-fork/role-fork.component';
     CustomerProfilePageComponent,
     MasterInfoBlockComponent,
     RoleForkComponent,
+    CustomerInfoBlockComponent,
   ],
   imports: [
     BrowserModule,

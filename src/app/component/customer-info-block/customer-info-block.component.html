@@ -5,11 +5,9 @@
         </div>
         <div class="right">
             <h6 class="mb-1 font-weight-bold" [innerText]="user.userName"><i class="feather-check-circle text-success"></i></h6>
-            <div *ngIf="master.name != null">
-                <p>{{master.name}}</p>
-                <p>Experience {{master.experience}} yr.</p>
-                <p>City: {{master.workplace}}</p>
-                <p>Domain: {{master.domain}}</p>
+            <div *ngIf="customer.name != null">
+                <p>{{customer.name}}</p>
+                <p>Contact {{customer.name}}, {{customer.phone}}</p>
             </div>
         </div>
     </div>
