@@ -24,6 +24,12 @@ import { MyIssuesPageComponent } from './page/my-issues-page/my-issues-page.comp
 import { IssueFormPageComponent } from './page/issue-form-page/issue-form-page.component';
 import { PageHeaderComponent } from './component/page-header/page-header.component';
 import { FavoritsPageComponent } from './page/favorits-page/favorits-page.component';
+import { MasterProfileComponent } from './page/master-profile/master-profile.component';
+import { CustomerProfileComponent } from './page/customer-profile/customer-profile.component';
+import { MasterProfilePageComponent } from './page/master-profile-page/master-profile-page.component';
+import { CustomerProfilePageComponent } from './page/customer-profile-page/customer-profile-page.component';
+import { MasterInfoBlockComponent } from './component/master-info-block/master-info-block.component';
+import { RoleForkComponent } from './page/role-fork/role-fork.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +53,12 @@ import { FavoritsPageComponent } from './page/favorits-page/favorits-page.compon
     IssueFormPageComponent,
     PageHeaderComponent,
     FavoritsPageComponent,
+    MasterProfileComponent,
+    CustomerProfileComponent,
+    MasterProfilePageComponent,
+    CustomerProfilePageComponent,
+    MasterInfoBlockComponent,
+    RoleForkComponent,
   ],
   imports: [
     BrowserModule,

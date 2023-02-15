@@ -1,17 +1,17 @@
-import {Component} from '@angular/core';
-import {Router} from "@angular/router";
-import {GhbUser} from "../../dto/GhbUser";
-import {GhbServiceClientService} from "../../service/ghb-service-client.service";
-import {SessionUtilService} from "../../service/session-util.service";
+import { Component } from '@angular/core';
 import {Master} from "../../dto/Master";
 import {Customer} from "../../dto/Customer";
+import {GhbUser} from "../../dto/GhbUser";
+import {Router} from "@angular/router";
+import {GhbServiceClientService} from "../../service/ghb-service-client.service";
+import {SessionUtilService} from "../../service/session-util.service";
 
 @Component({
-  selector: 'app-profile-page',
-  templateUrl: './profile-page.component.html',
-  styleUrls: ['./profile-page.component.css']
+  selector: 'app-master-profile-page',
+  templateUrl: './master-profile-page.component.html',
+  styleUrls: ['./master-profile-page.component.css']
 })
-export class ProfilePageComponent {
+export class MasterProfilePageComponent {
   profileImage: any = "./assets/tempimg/user1.jpg";
   name: any = "First and Last Name";
   details: any = "Short description for specialization";
@@ -34,12 +34,12 @@ export class ProfilePageComponent {
     }
 
     this.ghbService.findMasterByGhbUserId(user.userId)
-      .pipe()
-      .subscribe(m => this.master = m);
+        .pipe()
+        .subscribe(m => this.master = m);
 
     this.ghbService.findCustomerByGhbUserId(user.userId)
-      .pipe()
-      .subscribe(c => this.customer = c);
+        .pipe()
+        .subscribe(c => this.customer = c);
   }
 
   logout() {

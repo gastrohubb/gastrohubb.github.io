@@ -9,17 +9,27 @@ import {AuthGuardService} from "./service/auth-guard.service";
 import {MyIssuesPageComponent} from "./page/my-issues-page/my-issues-page.component";
 import {IssueFormComponent} from "./component/issue-form/issue-form.component";
 import {FavoritsPageComponent} from "./page/favorits-page/favorits-page.component";
+import {MasterProfilePageComponent} from "./page/master-profile-page/master-profile-page.component";
+import {CustomerProfilePageComponent} from "./page/customer-profile-page/customer-profile-page.component";
+import {RoleForkComponent} from "./page/role-fork/role-fork.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
   {path: 'register', component: RegisterPageComponent},
-  {path: '', component: HomePageComponent},
-  {path: 'home', component: HomePageComponent},
+  {path: '', component: RoleForkComponent},
+  {path: 'master/home', component: HomePageComponent},
+  {path: 'customer/home', component: HomePageComponent},
   {path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuardService]},
+  {path: 'master/profile', component: MasterProfilePageComponent, canActivate: [AuthGuardService]},
+  {path: 'customer/profile', component: CustomerProfilePageComponent, canActivate: [AuthGuardService]},
+  {path: 'master/issueForm', component: IssueFormComponent, canActivate: [AuthGuardService]},
+  {path: 'customer/issueForm', component: IssueFormComponent, canActivate: [AuthGuardService]},
   {path: 'issueForm', component: IssueFormComponent, canActivate: [AuthGuardService]},
-  {path: 'myIssues', component: MyIssuesPageComponent, canActivate: [AuthGuardService]},
+  {path: 'master/myIssues', component: MyIssuesPageComponent, canActivate: [AuthGuardService]},
+  {path: 'customer/myIssues', component: MyIssuesPageComponent, canActivate: [AuthGuardService]},
   {path: 'issues/:id', component: IssuePageComponent, canActivate: [AuthGuardService]},
-  {path: 'favorites', component: FavoritsPageComponent, canActivate: [AuthGuardService]},
+  {path: 'master/favorites', component: FavoritsPageComponent, canActivate: [AuthGuardService]},
+  {path: 'customer/favorites', component: FavoritsPageComponent, canActivate: [AuthGuardService]},
 ];
 
 @NgModule({

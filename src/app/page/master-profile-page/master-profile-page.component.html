@@ -1,0 +1,67 @@
+<div class="osahan-profile">
+    <div class="bg-primary border-bottom px-3 pt-3 pb-5 d-flex align-items-center">
+        <a class="toggle togglew toggle-2" href="#"><span></span></a>
+        <h4 class="font-weight-bold m-0 text-white">Master Profile</h4>
+    </div>
+    <!-- profile -->
+    <div class="p-3 osahan-profile">
+
+
+        <app-brief-info-block
+                [imgSrc]="'./assets/temping/user/1.jpg'"
+                [title]="user.userName"
+                [subtitle]="details"></app-brief-info-block>
+
+        <app-master-info-block>
+
+        </app-master-info-block>
+
+        <app-brief-info-block
+                [imgSrc]="profileImage"
+                [title]="user.userName"
+                [subtitle]="details"></app-brief-info-block>
+
+        <div class="bg-white rounded shadow mt-3 profile-details">
+            <div class="d-flex align-items-center border-bottom p-3">
+                <div *ngIf="master.name != null">
+                    <h3>Master</h3>
+                    <h4>{{master.name}}</h4>
+                    <p>Experience {{master.experience}} yr.</p>
+                    <p>City: {{master.workplace}}</p>
+                    <p>Domain: {{master.domain}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded shadow mt-3 profile-details">
+            <app-modal-link-block
+                    [title]="'My info - Master'"
+                    [subtitle]="'Click to add or edit'"
+                    [linkedToModalId]="'masterForm'"></app-modal-link-block>
+            <app-profile-form-master
+                    [modalId]="'masterForm'"> </app-profile-form-master>
+            <app-hyper-link-block
+                    [iconClass]="'feather-phone'"
+                    [iconColorClass]="'bg-danger'"
+                    [text]="'Contact'"
+                    [hyperLink]="'/contact-us.html'"></app-hyper-link-block>
+            <app-hyper-link-block
+                    [iconClass]="'feather-info'"
+                    [iconColorClass]="'bg-success'"
+                    [text]="'Term of use'"
+                    [hyperLink]="'/terms.html'"></app-hyper-link-block>
+            <app-hyper-link-block
+                    [iconClass]="'feather-lock'"
+                    [iconColorClass]="'bg-warning'"
+                    [text]="'Privacy policy'"
+                    [hyperLink]="'/privacy.html'"></app-hyper-link-block>
+            <app-hyper-link-block
+                    [iconClass]="'feather-log-out'"
+                    [iconColorClass]="'bg-primary'"
+                    [text]="'Logout'"
+                    [hyperLink]="'/login'" (click)="logout()"></app-hyper-link-block>
+        </div>
+    </div>
+</div>
+<app-menu-bottom [appContext]="appContext"></app-menu-bottom>
+
