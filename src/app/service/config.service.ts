@@ -18,5 +18,9 @@ export class ConfigService {
         // return "https://gastro.tutrit.com/";
         return "http://localhost:8080";
     }
+
+    public filesEndpoint(): string {
+        return this.apiUrl() + "/files"
+    }
 }
 

@@ -60,6 +60,10 @@ export class GhbServiceClientService {
     return this.http.get<Issue>(this.uri + "/issues/?projection=full&size=20&page=" + page);
   }
 
+    public getPageOfMasters(page: number):Observable<any> {
+        return this.http.get<Issue>(this.uri + "/masters/?projection=full&size=20&page=" + page);
+    }
+
   public findIssueById(uuid: string): Observable<Issue> {
     return this.http.get<Issue>(this.uri + "/issues/" + uuid);
   }

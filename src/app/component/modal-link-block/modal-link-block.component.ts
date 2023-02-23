@@ -12,5 +12,4 @@ export class ModalLinkBlockComponent {
   subtitle: any;
   @Input()
   linkedToModalId: any;
-
 }

@@ -1,0 +1,43 @@
+<div class="modal fade" [id]="modalId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Master data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="col-md-12 form-group">
+                        <label class="form-label">Name</label>
+                        <input [(ngModel)]="master.name" placeholder="Full name" type="text" class="form-control" />
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="form-label">Domain</label>
+                        <input [(ngModel)]="master.domain"  placeholder="What is your specialization in general" type="text" class="form-control">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="form-label">Experience</label>
+                        <input [(ngModel)]="master.experience"  placeholder="Experience in years" type="text" class="form-control">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="form-label">Workplace</label>
+                        <input [(ngModel)]="master.workplace"  placeholder="City of operating" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer p-0 border-0">
+                <div class="col-6 m-0 p-0">
+                    <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal">Close</button>
+                </div>
+                <div class="col-6 m-0 p-0">
+                    <button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal" (click)="postMaster()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

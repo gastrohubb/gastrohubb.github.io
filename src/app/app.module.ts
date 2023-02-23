@@ -31,6 +31,14 @@ import { CustomerProfilePageComponent } from './page/customer-profile-page/custo
 import { MasterInfoBlockComponent } from './component/master-info-block/master-info-block.component';
 import { RoleForkComponent } from './page/role-fork/role-fork.component';
 import { CustomerInfoBlockComponent } from './component/customer-info-block/customer-info-block.component';
+import { HomeMasterPageComponent } from './page/home-master-page/home-master-page.component';
+import { HomeCustomerPageComponent } from './page/home-customer-page/home-customer-page.component';
+import { MasterListComponent } from './component/master-list/master-list.component';
+import { MasterInfoCardInListComponent } from './component/master-info-card-in-list/master-info-card-in-list.component';
+import { HyperLinkBlockComponentLinkedToModalComponent } from './component/hyper-link-block-component-linked-to-modal/hyper-link-block-component-linked-to-modal.component';
+import { ModalLinkWithIconBlockComponentComponent } from './component/modal-link-with-icon-block-component/modal-link-with-icon-block-component.component';
+import { AddressFormMasterComponent } from './component/addres-form-master/address-form-master.component';
+import { IssueExtendedPageComponent } from './page/issue-extended-page/issue-extended-page.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +69,14 @@ import { CustomerInfoBlockComponent } from './component/customer-info-block/cust
     MasterInfoBlockComponent,
     RoleForkComponent,
     CustomerInfoBlockComponent,
+    HomeMasterPageComponent,
+    HomeCustomerPageComponent,
+    MasterListComponent,
+    MasterInfoCardInListComponent,
+    HyperLinkBlockComponentLinkedToModalComponent,
+    ModalLinkWithIconBlockComponentComponent,
+    AddressFormMasterComponent,
+    IssueExtendedPageComponent,
   ],
   imports: [
     BrowserModule,

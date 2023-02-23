@@ -1,0 +1,17 @@
+<div class="col-12 pt-2">
+    <div class="d-flex align-items-start list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+        <div class="p-2 list-card-image">
+            <img [src]="getImgById(master.ghbUser?.imgUuid)" class="img-fluid item-img w-100 square-center-cropped">
+        </div>
+        <div class="p-3 position-relative">
+            <div class="list-card-body">
+                <div *ngIf="master.name != null">
+                    <h6 class="mb-1">{{master.name}}</h6>
+                    <p class="text-gray mb-3">Experience {{master.experience}} yr.</p>
+                    <p class="text-gray mb-3">City: {{master.workplace}}</p>
+                    <p class="text-gray mb-3">Domain: {{master.domain}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

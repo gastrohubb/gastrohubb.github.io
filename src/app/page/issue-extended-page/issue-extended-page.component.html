@@ -1,0 +1,45 @@
+
+<div class="osahan-restaurant">
+    <div class="osahan-restaurant-detail">
+        <div class="p-3">
+            <div class="pt-3">
+                <h2 class="font-weight-bold" [innerText]="issue.customer?.name"></h2>
+                <p class="font-weight-light text-dark m-0" [innerText]="issue.city"></p>
+            </div>
+            <div class="pt-2">
+                <h5 [innerText]="issue.description"></h5>
+            </div>
+            <div class="pt-2">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="font-weight-bold m-0" [innerText]="issue.customer?.ownerName"></p>
+                    </div>
+                    <div class="col-6">
+                        <p class="font-weight-bold m-0" [innerText]="issue.customer?.phone"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-primary p-3">
+            <div class="d-flex align-items-center">
+                <a href="contact-us.html" class="btn btn-sm btn-outline-light ml-auto">Apply</a>
+            </div>
+        </div>
+        <div class="bg-light">
+            <p class="font-weight-bold px-3 pt-3 m-0">Images</p>
+            <!-- slider -->
+            <div class="trending-slider rounded overflow-hidden">
+                <div class="osahan-slider-item px-1 py-3">
+                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+                        <div class="list-card-image">
+                            <a href="#">
+                                <img *ngIf="issue.photo"  [src]="issue.photo" class="img-fluid w-100 square-center-cropped" >
+                                <img *ngIf="!issue.photo" src="./assets/tempimg/trending1.png" class="img-fluid w-100 square-center-cropped" alt="No image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
