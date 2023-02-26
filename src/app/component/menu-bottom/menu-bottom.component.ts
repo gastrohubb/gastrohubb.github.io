@@ -11,6 +11,8 @@ import {Router} from "@angular/router";
 export class MenuBottomComponent {
     @Input()
     appContext: string = "";
+    @Input()
+    currentPagePath: any;
     setClass: boolean = false;
 
     colClass: string = "col";

@@ -5,64 +5,65 @@ import {Router} from "@angular/router";
 import {ConfigService} from "../../service/config.service";
 
 @Component({
-  selector: 'app-home-master-page',
-  templateUrl: './home-master-page.component.html',
-  styleUrls: ['./home-master-page.component.css']
+    selector: 'app-home-master-page',
+    templateUrl: './home-master-page.component.html',
+    styleUrls: ['./home-master-page.component.css']
 })
 export class HomeMasterPageComponent {
-  title: string = 'Issues';
-  issues: Issue[] = [];
-  scrollThreshold: number = 1000;
-  currentPage: number = 0;
-  totalPages: number = 0;
-  config: any;
+    title: string = 'Issues';
+    issues: Issue[] = [];
+    scrollThreshold: number = 1000;
+    currentPage: number = 0;
+    totalPages: number = 0;
+    config: any;
+    currentPagePath: any;
 
-  constructor(private ghbClient: GhbServiceClientService,
-              private router: Router,
-              private configService: ConfigService) {
-  }
-
-  ngOnInit() {
-
-    this.ghbClient.getPageOfIssues(this.currentPage++)
-        .pipe()
-        .subscribe(page => {
-          this.totalPages = page.page.totalPages;
-          let embedded = page._embedded;
-          let issuesList: Issue[] = embedded.issues as Issue[];
-          issuesList.forEach((item) => this.issues.push(item));
-        });
-  }
-
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(event: any) {
-    console.log(window.scrollY + this.scrollThreshold)
-    if (this.isScrolledToTheBottom() && this.hasNextPage()) {
-      this.scrollThreshold = this.scrollThreshold / 10;
-      this.ghbClient.getPageOfIssues(this.currentPage++)
-          .pipe()
-          .subscribe(page => {
-            let embedded = page._embedded;
-            let issuesList: Issue[] = embedded.issues as Issue[];
-            issuesList.forEach((item) => this.issues.push(item));
-            this.scrollThreshold = this.scrollThreshold * 10;
-          });
+    constructor(private ghbClient: GhbServiceClientService,
+                private router: Router,
+                private configService: ConfigService) {
     }
-  }
 
-  private isScrolledToTheBottom(): boolean {
-    return window.scrollY + this.scrollThreshold > document.body.scrollHeight;
-  }
+    ngOnInit() {
+        this.currentPagePath = this.router.url;
+        this.ghbClient.getPageOfIssues(this.currentPage++)
+            .pipe()
+            .subscribe(page => {
+                this.totalPages = page.page.totalPages;
+                let embedded = page._embedded;
+                let issuesList: Issue[] = embedded.issues as Issue[];
+                issuesList.forEach((item) => this.issues.push(item));
+            });
+    }
 
-  private hasNextPage(): boolean {
-    return this.currentPage < this.totalPages;
-  }
+    @HostListener('window:scroll', ['$event'])
+    onWindowScroll(event: any) {
+        console.log(window.scrollY + this.scrollThreshold)
+        if (this.isScrolledToTheBottom() && this.hasNextPage()) {
+            this.scrollThreshold = this.scrollThreshold / 10;
+            this.ghbClient.getPageOfIssues(this.currentPage++)
+                .pipe()
+                .subscribe(page => {
+                    let embedded = page._embedded;
+                    let issuesList: Issue[] = embedded.issues as Issue[];
+                    issuesList.forEach((item) => this.issues.push(item));
+                    this.scrollThreshold = this.scrollThreshold * 10;
+                });
+        }
+    }
 
-  navigate() {
-    this.ghbClient.getPageOfIssues(0).pipe()
-        .subscribe(() => {
-          this.ghbClient.getPageOfIssues(0).pipe().subscribe(() => {
-          })
-        });
-  }
+    private isScrolledToTheBottom(): boolean {
+        return window.scrollY + this.scrollThreshold > document.body.scrollHeight;
+    }
+
+    private hasNextPage(): boolean {
+        return this.currentPage < this.totalPages;
+    }
+
+    navigate() {
+        this.ghbClient.getPageOfIssues(0).pipe()
+            .subscribe(() => {
+                this.ghbClient.getPageOfIssues(0).pipe().subscribe(() => {
+                })
+            });
+    }
 }

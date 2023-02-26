@@ -4,6 +4,7 @@ export class Issue {
   description: any;
   photo: any;
   city: any;
+  address: any;
   issueStatus: any;
   timestamp: any;
   customer: any;
