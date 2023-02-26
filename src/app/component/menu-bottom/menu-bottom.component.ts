@@ -154,4 +154,8 @@ export class MenuBottomComponent {
     canActivateOrNot(): boolean {
         return this.authGuardService.canActivateOrNot();
     }
+
+    isCustomer() {
+        return this.appContext === 'customer'
+    }
 }
