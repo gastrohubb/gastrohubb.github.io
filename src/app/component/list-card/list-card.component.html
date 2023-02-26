@@ -1,7 +1,7 @@
 <div class="col-12 pt-2">
   <div class="d-flex align-items-start list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
     <div class="list-card-image">
-      <a [href]="'/issues/'+issue.issueId">
+      <a [href]="contextPath + '/issues/'+issue.issueId">
         <img *ngIf="issue.photo" [src]="issue.photo" class="img-fluid item-img w-100 square-center-cropped">
         <img *ngIf="!issue.photo" src="./assets/tempimg/sales1.png" class="img-fluid item-img w-100 square-center-cropped">
       </a>

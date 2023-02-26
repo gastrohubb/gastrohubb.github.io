@@ -32,6 +32,7 @@ const routes: Routes = [
   {path: 'customer/myIssues', component: MyIssuesPageComponent, canActivate: [AuthGuardService]},
   // {path: 'issues/:id', component: IssuePageComponent, canActivate: [AuthGuardService]},
   {path: 'issues/:id', component: IssueExtendedPageComponent, canActivate: [AuthGuardService]},
+  {path: 'master/issues/:id', component: IssueExtendedPageComponent, canActivate: [AuthGuardService]},
   {path: 'master/favorites', component: FavoritsPageComponent, canActivate: [AuthGuardService]},
   {path: 'customer/favorites', component: FavoritsPageComponent, canActivate: [AuthGuardService]},
 ];

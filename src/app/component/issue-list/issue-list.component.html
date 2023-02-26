@@ -1,3 +1,5 @@
 <div *ngFor="let issue of issues">
-  <app-list-card [issue]="issue"></app-list-card>
+  <app-list-card
+          [contextPath]="contextPath"
+          [issue]="issue"></app-list-card>
 </div>

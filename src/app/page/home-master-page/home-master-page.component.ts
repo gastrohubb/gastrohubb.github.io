@@ -3,6 +3,7 @@ import {Issue} from "../../dto/Issue";
 import {GhbServiceClientService} from "../../service/ghb-service-client.service";
 import {Router} from "@angular/router";
 import {ConfigService} from "../../service/config.service";
+import {ContextService} from "../../service/context.service";
 
 @Component({
     selector: 'app-home-master-page',
@@ -17,10 +18,13 @@ export class HomeMasterPageComponent {
     totalPages: number = 0;
     config: any;
     currentPagePath: any;
+    contextPath: string;
 
     constructor(private ghbClient: GhbServiceClientService,
                 private router: Router,
-                private configService: ConfigService) {
+                private configService: ConfigService,
+                private context: ContextService) {
+        this.contextPath = context.getAppContextPath();
     }
 
     ngOnInit() {

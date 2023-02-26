@@ -9,4 +9,6 @@ import {Issue} from "../../dto/Issue";
 export class ListCardComponent {
   @Input()
   issue: Issue = new Issue();
+  @Input()
+  contextPath: string = "";
 }
