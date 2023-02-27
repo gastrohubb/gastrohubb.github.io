@@ -10,6 +10,6 @@ export class ContextService {
   }
 
   public getAppContextPath() {
-    return this.router.url.substring(1, this.router.url.indexOf("/", 1))
+    return this.router.url.substring(1, this.router.url.indexOf("/", 1));
   }
 }

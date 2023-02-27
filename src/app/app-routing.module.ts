@@ -1,8 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {ProfilePageComponent} from "./page/profile-page/profile-page.component";
-import {HomePageComponent} from "./page/home-page/home-page.component";
-import {IssuePageComponent} from "./page/issue-page/issue-page.component";
 import {LoginPageComponent} from "./page/login-page/login-page.component";
 import {RegisterPageComponent} from "./page/register-page/register-page.component";
 import {AuthGuardService} from "./service/auth-guard.service";
@@ -31,9 +28,8 @@ const routes: Routes = [
   {path: 'issueForm', component: IssueFormComponent, canActivate: [AuthGuardService]},
   {path: 'master/myIssues', component: MyIssuesPageComponent, canActivate: [AuthGuardService]},
   {path: 'customer/myIssues', component: MyIssuesPageComponent, canActivate: [AuthGuardService]},
-  // {path: 'issues/:id', component: IssuePageComponent, canActivate: [AuthGuardService]},
-  {path: 'issues/:id', component: IssueExtendedPageComponent, canActivate: [AuthGuardService]},
   {path: 'master/issues/:id', component: IssueExtendedPageComponent, canActivate: [AuthGuardService]},
+  {path: 'customer/issues/:id', component: IssueExtendedPageComponent, canActivate: [AuthGuardService]},
   {path: 'master/favorites', component: FavoritsPageComponent, canActivate: [AuthGuardService]},
   {path: 'customer/favorites', component: FavoritsPageComponent, canActivate: [AuthGuardService]},
 ];

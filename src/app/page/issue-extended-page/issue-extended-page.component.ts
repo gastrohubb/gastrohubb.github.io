@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Issue} from "../../dto/Issue";
 import {GhbServiceClientService} from "../../service/ghb-service-client.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ContextService} from "../../service/context.service";
 
 @Component({
   selector: 'app-issue-extended-page',
@@ -12,10 +13,14 @@ export class IssueExtendedPageComponent {
 
   issue: Issue = new Issue();
   tries: number = 0; //todo: it not loading full data from first attempt. should be fixed.
+  appContext: string;
+  title: string = "Issue Details"
 
   constructor(private ghbClient: GhbServiceClientService,
               private router: ActivatedRoute,
-              private navigate: Router) {
+              private navigate: Router,
+              private context: ContextService) {
+    this.appContext = this.context.getAppContextPath();
   }
 
   ngOnInit() {
