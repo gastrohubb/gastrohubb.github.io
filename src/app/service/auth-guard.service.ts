@@ -1,13 +1,15 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from "@angular/router";
 import {GhbUser} from "../dto/GhbUser";
+import {ContextService} from "./context.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService {
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private context: ContextService) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -18,7 +20,8 @@ export class AuthGuardService {
     if (this.canActivateOrNot()) {
       return true;
     }
-    this.router.navigate(['/login']);
+    let path: string = this.context.getAppContextPath();
+    this.router.navigate([path + '/login']);
     return false;
   }
 

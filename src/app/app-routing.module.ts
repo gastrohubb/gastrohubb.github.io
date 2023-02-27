@@ -17,12 +17,13 @@ import {HomeCustomerPageComponent} from "./page/home-customer-page/home-customer
 import {IssueExtendedPageComponent} from "./page/issue-extended-page/issue-extended-page.component";
 
 const routes: Routes = [
-  {path: 'login', component: LoginPageComponent},
-  {path: 'register', component: RegisterPageComponent},
   {path: '', component: RoleForkComponent},
+  {path: 'master/login', component: LoginPageComponent},
+  {path: 'customer/login', component: LoginPageComponent},
+  {path: 'master/register', component: RegisterPageComponent},
+  {path: 'customer/register', component: RegisterPageComponent},
   {path: 'master/home', component: HomeMasterPageComponent},
   {path: 'customer/home', component: HomeCustomerPageComponent},
-  {path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuardService]},
   {path: 'master/profile', component: MasterProfilePageComponent, canActivate: [AuthGuardService]},
   {path: 'customer/profile', component: CustomerProfilePageComponent, canActivate: [AuthGuardService]},
   {path: 'master/issueForm', component: IssueFormComponent, canActivate: [AuthGuardService]},
