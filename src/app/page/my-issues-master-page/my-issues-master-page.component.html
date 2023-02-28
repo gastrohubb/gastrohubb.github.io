@@ -1,0 +1,8 @@
+<app-page-header [title]="title"></app-page-header>
+<app-issue-list [issues]="issues"></app-issue-list>
+<div *ngFor="let event of masterApplyIssueEvent">
+    <app-master-applied-issue-card
+            [contextPath]="contextPath"
+            [masterApplyIssueEvent]="event"></app-master-applied-issue-card>
+</div>
+<app-menu-bottom></app-menu-bottom>

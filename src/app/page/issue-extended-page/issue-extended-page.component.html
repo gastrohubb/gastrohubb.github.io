@@ -21,11 +21,24 @@
                 </div>
             </div>
         </div>
+
         <div class="bg-primary p-3">
-            <div class="d-flex align-items-center">
-                <a href="contact-us.html" class="btn btn-sm btn-outline-light ml-auto">Apply</a>
+            <div *ngIf="appContext == 'customer'" class="d-flex align-items-center">
+                <h4 class="font-weight-bold m-0 text-white" removed_class="pl-5">
+                    &nbsp;
+                </h4>
+            </div>
+
+            <div *ngIf="appContext == 'master'" class="d-flex align-items-center">
+                <a href='#' *ngIf="appliedTimestamp === undefined" class="btn btn-sm btn-outline-light ml-auto"
+                   (click)="onApplyClicked($event)">Click here to quick Apply!</a>
+                <h4 *ngIf="appliedTimestamp != undefined" class="font-weight-bold m-0 text-white"
+                    removed_class="pl-5">
+                    You applied on {{ appliedTimestamp }}
+                </h4>
             </div>
         </div>
+
         <div class="bg-light">
             <p class="font-weight-bold px-3 pt-3 m-0">Images</p>
             <!-- slider -->
@@ -34,8 +47,10 @@
                     <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                         <div class="list-card-image">
                             <a href="#">
-                                <img *ngIf="issue.photo"  [src]="issue.photo" class="img-fluid w-100 square-center-cropped" >
-                                <img *ngIf="!issue.photo" src="./assets/tempimg/trending1.png" class="img-fluid w-100 square-center-cropped" alt="No image">
+                                <img *ngIf="issue.photo" [src]="issue.photo"
+                                     class="img-fluid w-100 square-center-cropped">
+                                <img *ngIf="!issue.photo" src="./assets/tempimg/trending1.png"
+                                     class="img-fluid w-100 square-center-cropped" alt="No image">
                             </a>
                         </div>
                     </div>

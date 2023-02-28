@@ -58,7 +58,8 @@ export class IssueFormComponent {
                 this.imgSrc = null;
                 this.fileList = null;
                 this.errorMessage = null;
-                this.router.navigate(['issues', issue.issueId]);
+                let path: string = this.context.getAppContextPath();
+                this.router.navigate([path + '/issues', issue.issueId]);
             });
 
     }

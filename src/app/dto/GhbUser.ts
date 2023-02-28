@@ -1,5 +1,5 @@
 export class GhbUser {
-  userId: any;
+  public userId: any;
   userName: any;
   locale: any;
   email: any;
