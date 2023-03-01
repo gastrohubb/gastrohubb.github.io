@@ -6,9 +6,8 @@ import {ContextService} from "../../service/context.service";
 import {SessionUtilService} from "../../service/session-util.service";
 import {GhbUser} from "../../dto/GhbUser";
 import {MasterApplyIssueEvent} from "../../dto/MasterApplyIssueEvent";
-import { DatePipe } from '@angular/common';
 
-
+//todo: could be divided on IssueCardMasterView and IssueCardCustomerView
 @Component({
     selector: 'app-issue-extended-page',
     templateUrl: './issue-extended-page.component.html',
@@ -20,14 +19,14 @@ export class IssueExtendedPageComponent {
     tries: number = 0; //todo: it not loading full data from first attempt. should be fixed.
     appContext: string;
     title: string = "Issue Details"
+    masterApplyIssueEvent: MasterApplyIssueEvent[] = [];
     appliedTimestamp: any;
 
     constructor(private ghbClient: GhbServiceClientService,
                 private router: ActivatedRoute,
                 private navigate: Router,
                 private context: ContextService,
-                private session: SessionUtilService,
-                private datePipe: DatePipe) {
+                private session: SessionUtilService) {
         this.appContext = this.context.getAppContextPath();
     }
 
@@ -37,6 +36,8 @@ export class IssueExtendedPageComponent {
             this.ghbClient.findIssueByIdFull(id)
                 .subscribe(issue => {
                     this.issue = issue;
+
+                    this.getMastersAppliedOnIssue(issue.issueId);
                     if (!this.issue.photo && this.tries++ < 5) {
                         console.log("fail to load image, tries left " + (5 - this.tries));
                         setTimeout(() => {
@@ -48,6 +49,19 @@ export class IssueExtendedPageComponent {
                 });
             this.setApplyDateIfMaserApplied(id)
         }
+
+
+    }
+
+    private getMastersAppliedOnIssue(issueId: string) {
+        this.ghbClient.getAllMastersThatAppliedOnIssue(issueId).subscribe({
+            next: (response: MasterApplyIssueEvent[]) => {
+                response.forEach((event) => this.masterApplyIssueEvent.push(event));
+            },
+            error: (error: any) => {
+                console.error(error);
+            }
+        });
     }
 
     onApplyClicked(event: Event) {
@@ -57,7 +71,7 @@ export class IssueExtendedPageComponent {
         let issueId = this.issue.issueId;
         this.ghbClient.saveMasterApplyIssueEvent(userId, issueId).subscribe({
             next: (response: MasterApplyIssueEvent) => {
-                this.appliedTimestamp = response.timestamp;
+                this.appliedTimestamp = response.approveTimestamp;
             },
             error: (error: any) => {
                 console.error(error);
@@ -70,7 +84,7 @@ export class IssueExtendedPageComponent {
         let userId = user.userId;
         this.ghbClient.getMasterApplyIssueEvent(userId, issueId).subscribe({
             next: (response: MasterApplyIssueEvent) => {
-                this.appliedTimestamp = response.timestamp;
+                this.appliedTimestamp = response.applyTimestamp;
             },
             error: (error: any) => {
                 console.error(error);

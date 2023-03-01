@@ -11,7 +11,15 @@
                 <h6 class="mb-1" [innerText]="masterApplyIssueEvent.issue.description?.substring(0, 10)"></h6>
                 <p class="text-gray mb-3" [innerText]="masterApplyIssueEvent.issue.description"></p>
                 <p class="text-gray mb-3" [innerText]="masterApplyIssueEvent.issue.customer?.name"></p>
-                <p class="text-gray mb-3" [innerText]="'You applied on ' + masterApplyIssueEvent.timestamp"></p>
+                <p class="text-gray mb-3"
+                   *ngIf="masterApplyIssueEvent.applyTimestamp"
+                   [innerText]="'You applied on ' + masterApplyIssueEvent.applyTimestamp"></p>
+                <p class="text-gray mb-3"
+                   *ngIf="masterApplyIssueEvent.approveTimestamp"
+                   [innerText]="'You approved on ' + masterApplyIssueEvent.approveTimestamp"></p>
+                <p class="text-gray mb-3"
+                   *ngIf="masterApplyIssueEvent.declineTimestamp"
+                   [innerText]="'You declined on ' + masterApplyIssueEvent.declineTimestamp"></p>
             </div>
         </div>
     </div>

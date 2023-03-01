@@ -198,6 +198,10 @@ export class GhbServiceClientService {
     }
 
     public getIssuesMasterAppliedOn(userId: string): Observable<MasterApplyIssueEvent[]> {
-        return this.http.get<MasterApplyIssueEvent[]>(this.uri + "/getIssuesMasterAppliedOn/"+ userId);
+        return this.http.get<MasterApplyIssueEvent[]>(this.uri + "/getIssuesMasterAppliedOn/" + userId);
+    }
+
+    public getAllMastersThatAppliedOnIssue(issueId: string): Observable<MasterApplyIssueEvent[]> {
+        return this.http.get<MasterApplyIssueEvent[]>(this.uri + "/getMastersApplicationsOnIssue/" + issueId);
     }
 }

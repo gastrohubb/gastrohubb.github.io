@@ -1,15 +1,23 @@
 import {Issue} from "./Issue";
+import {Master} from "./Master";
 
 export class MasterApplyIssueEvent {
   masterApplyIssueEventId: string = '';
-  timestamp: Date = new Date();
   issue: Issue = new Issue();
+  master: Master = new Master();
+  applyTimestamp: any = null;
+  approveTimestamp: any = null;
+  declineTimestamp: any = null;
 
   constructor(data: any) {
     if (data) {
       this.masterApplyIssueEventId = data.masterApplyIssueEventId || '';
-      this.timestamp = data.timestamp ? new Date(data.timestamp) : new Date();
       this.issue = data.issue ? data.issue : new Issue();
+      this.master = data.master ? data.master : new Master();
+      this.applyTimestamp = data.applyTimestamp || null;
+      this.approveTimestamp = data.approveTimestamp || null;
+      this.declineTimestamp = data.declineTimestamp || null;
+
     }
   }
 }

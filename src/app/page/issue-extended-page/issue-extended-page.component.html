@@ -57,6 +57,14 @@
                 </div>
             </div>
         </div>
+
+        <div class="bg-light">
+            <p class="font-weight-bold px-3 pt-3 m-0">Masters applied</p>
+            <div *ngFor="let masterApplyEvent of masterApplyIssueEvent">
+                <app-master-apply-event-info-card-in-list  [masterApplyEvent]="masterApplyEvent"></app-master-apply-event-info-card-in-list>
+            </div>
+        </div>
     </div>
 </div>
+<br />
 <app-menu-bottom [appContext]="appContext"></app-menu-bottom>

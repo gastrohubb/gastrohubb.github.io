@@ -42,6 +42,7 @@ import {IssueExtendedPageComponent} from './page/issue-extended-page/issue-exten
 import {DatePipe} from "@angular/common";
 import { MyIssuesMasterPageComponent } from './page/my-issues-master-page/my-issues-master-page.component';
 import { MasterAppliedIssueCardComponent } from './component/master-applied-issue-card/master-applied-issue-card.component';
+import { MasterApplyEventInfoCardInListComponent } from './component/master-apply-event-info-card-in-list/master-apply-event-info-card-in-list.component';
 
 @NgModule({
     declarations: [
@@ -82,6 +83,7 @@ import { MasterAppliedIssueCardComponent } from './component/master-applied-issu
         IssueExtendedPageComponent,
         MyIssuesMasterPageComponent,
         MasterAppliedIssueCardComponent,
+        MasterApplyEventInfoCardInListComponent,
     ],
     imports: [
         BrowserModule,
