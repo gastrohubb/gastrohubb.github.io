@@ -13,6 +13,7 @@ import {HomeMasterPageComponent} from "./page/home-master-page/home-master-page.
 import {HomeCustomerPageComponent} from "./page/home-customer-page/home-customer-page.component";
 import {IssueExtendedPageComponent} from "./page/issue-extended-page/issue-extended-page.component";
 import {MyIssuesMasterPageComponent} from "./page/my-issues-master-page/my-issues-master-page.component";
+import {FavoritesMasterPageComponent} from "./page/favorites-master-page/favorites-master-page.component";
 
 const routes: Routes = [
   {path: '', component: RoleForkComponent},
@@ -31,7 +32,7 @@ const routes: Routes = [
   {path: 'customer/myIssues', component: MyIssuesPageComponent, canActivate: [AuthGuardService]},
   {path: 'master/issues/:id', component: IssueExtendedPageComponent, canActivate: [AuthGuardService]},
   {path: 'customer/issues/:id', component: IssueExtendedPageComponent, canActivate: [AuthGuardService]},
-  {path: 'master/favorites', component: FavoritsPageComponent, canActivate: [AuthGuardService]},
+  {path: 'master/favorites', component: FavoritesMasterPageComponent, canActivate: [AuthGuardService]},
   {path: 'customer/favorites', component: FavoritsPageComponent, canActivate: [AuthGuardService]},
 ];
 

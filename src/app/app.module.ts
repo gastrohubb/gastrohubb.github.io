@@ -43,6 +43,7 @@ import {DatePipe} from "@angular/common";
 import { MyIssuesMasterPageComponent } from './page/my-issues-master-page/my-issues-master-page.component';
 import { MasterAppliedIssueCardComponent } from './component/master-applied-issue-card/master-applied-issue-card.component';
 import { MasterApplyEventInfoCardInListComponent } from './component/master-apply-event-info-card-in-list/master-apply-event-info-card-in-list.component';
+import { FavoritesMasterPageComponent } from './page/favorites-master-page/favorites-master-page.component';
 
 @NgModule({
     declarations: [
@@ -84,6 +85,7 @@ import { MasterApplyEventInfoCardInListComponent } from './component/master-appl
         MyIssuesMasterPageComponent,
         MasterAppliedIssueCardComponent,
         MasterApplyEventInfoCardInListComponent,
+        FavoritesMasterPageComponent,
     ],
     imports: [
         BrowserModule,

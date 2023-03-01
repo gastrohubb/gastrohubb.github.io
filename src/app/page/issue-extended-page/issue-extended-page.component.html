@@ -30,11 +30,11 @@
             </div>
 
             <div *ngIf="appContext == 'master'" class="d-flex align-items-center">
-                <a href='#' *ngIf="appliedTimestamp === undefined" class="btn btn-sm btn-outline-light ml-auto"
+                <a href='#' *ngIf="applyTimestamp === undefined" class="btn btn-sm btn-outline-light ml-auto"
                    (click)="onApplyClicked($event)">Click here to quick Apply!</a>
-                <h4 *ngIf="appliedTimestamp != undefined" class="font-weight-bold m-0 text-white"
+                <h4 *ngIf="applyTimestamp != undefined" class="font-weight-bold m-0 text-white"
                     removed_class="pl-5">
-                    You applied on {{ appliedTimestamp }}
+                    You applied on {{ applyTimestamp }}
                 </h4>
             </div>
         </div>
