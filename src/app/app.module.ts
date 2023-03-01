@@ -44,6 +44,8 @@ import { MyIssuesMasterPageComponent } from './page/my-issues-master-page/my-iss
 import { MasterAppliedIssueCardComponent } from './component/master-applied-issue-card/master-applied-issue-card.component';
 import { MasterApplyEventInfoCardInListComponent } from './component/master-apply-event-info-card-in-list/master-apply-event-info-card-in-list.component';
 import { FavoritesMasterPageComponent } from './page/favorites-master-page/favorites-master-page.component';
+import { FavoritesCustomerPageComponent } from './page/favorites-customer-page/favorites-customer-page.component';
+import { MyIssuesCustomerPageComponent } from './page/my-issues-customer-page/my-issues-customer-page.component';
 
 @NgModule({
     declarations: [
@@ -86,6 +88,8 @@ import { FavoritesMasterPageComponent } from './page/favorites-master-page/favor
         MasterAppliedIssueCardComponent,
         MasterApplyEventInfoCardInListComponent,
         FavoritesMasterPageComponent,
+        FavoritesCustomerPageComponent,
+        MyIssuesCustomerPageComponent,
     ],
     imports: [
         BrowserModule,

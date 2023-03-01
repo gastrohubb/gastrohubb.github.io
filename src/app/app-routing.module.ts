@@ -14,6 +14,7 @@ import {HomeCustomerPageComponent} from "./page/home-customer-page/home-customer
 import {IssueExtendedPageComponent} from "./page/issue-extended-page/issue-extended-page.component";
 import {MyIssuesMasterPageComponent} from "./page/my-issues-master-page/my-issues-master-page.component";
 import {FavoritesMasterPageComponent} from "./page/favorites-master-page/favorites-master-page.component";
+import {MyIssuesCustomerPageComponent} from "./page/my-issues-customer-page/my-issues-customer-page.component";
 
 const routes: Routes = [
   {path: '', component: RoleForkComponent},
@@ -29,7 +30,7 @@ const routes: Routes = [
   {path: 'customer/issueForm', component: IssueFormComponent, canActivate: [AuthGuardService]},
   {path: 'issueForm', component: IssueFormComponent, canActivate: [AuthGuardService]},
   {path: 'master/myIssues', component: MyIssuesMasterPageComponent, canActivate: [AuthGuardService]},
-  {path: 'customer/myIssues', component: MyIssuesPageComponent, canActivate: [AuthGuardService]},
+  {path: 'customer/myIssues', component: MyIssuesCustomerPageComponent, canActivate: [AuthGuardService]},
   {path: 'master/issues/:id', component: IssueExtendedPageComponent, canActivate: [AuthGuardService]},
   {path: 'customer/issues/:id', component: IssueExtendedPageComponent, canActivate: [AuthGuardService]},
   {path: 'master/favorites', component: FavoritesMasterPageComponent, canActivate: [AuthGuardService]},

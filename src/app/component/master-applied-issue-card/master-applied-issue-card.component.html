@@ -14,10 +14,10 @@
                 <p class="text-gray mb-3"
                    *ngIf="masterApplyIssueEvent.applyTimestamp"
                    [innerText]="'You applied on ' + masterApplyIssueEvent.applyTimestamp"></p>
-                <p class="text-gray mb-3"
+                <p class="text-gray mb-3 text-success"
                    *ngIf="masterApplyIssueEvent.approveTimestamp"
                    [innerText]="'You approved on ' + masterApplyIssueEvent.approveTimestamp"></p>
-                <p class="text-gray mb-3"
+                <p class="text-gray mb-3 text-danger"
                    *ngIf="masterApplyIssueEvent.declineTimestamp"
                    [innerText]="'You declined on ' + masterApplyIssueEvent.declineTimestamp"></p>
             </div>
