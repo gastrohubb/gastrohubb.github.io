@@ -1,4 +1,4 @@
-git /*
+/*
 Template Name: Swiggi - Online Food Ordering Website Mobile Template
 Author: Askbootstrap
 Author URI: https://themeforest.net/user/askbootstrap
