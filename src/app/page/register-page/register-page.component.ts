@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {GhbServiceClientService} from "../../service/ghb-service-client.service";
 import {catchError, Observable, throwError} from "rxjs";
 import {NewUser} from "../../dto/NewUser";
+import {ContextService} from "../../service/context.service";
 
 @Component({
   selector: 'app-register-page',
@@ -17,9 +18,13 @@ export class RegisterPageComponent {
   errorMessage: any;
   emailChecked: boolean = false;
   emailCheckPassed: boolean = false;
+  appContext: string;
+
 
   constructor(private router: Router,
-              private ghbClient: GhbServiceClientService) {
+              private ghbClient: GhbServiceClientService,
+              private context: ContextService) {
+    this.appContext = context.getAppContextPath();
   }
 
   signUp() {
@@ -62,12 +67,12 @@ export class RegisterPageComponent {
         }))
       .subscribe((user) => {
         sessionStorage.setItem("user", JSON.stringify(user));
-        this.router.navigate(['/home'])
+        this.router.navigate([this.appContext + '/home'])
       })
   }
 
   redirectToLoginForm() {
-    this.router.navigate(['/'])
+    this.router.navigate([this.appContext + '/login'])
   }
 
   checkEmail(event: FocusEvent) {

@@ -16,7 +16,8 @@
                     [subtitle]="'Click to add or edit'"
                     [linkedToModalId]="'masterForm'"></app-modal-link-block>
             <app-profile-form-master
-                    [modalId]="'masterForm'"> </app-profile-form-master>
+                    [modalId]="'masterForm'"
+                    (formUpdatedEventToParent) = "formUpdatedInChild()"> </app-profile-form-master>
             <app-modal-link-with-icon-block-component
                     [iconClass]="'feather-phone'"
                     [iconColorClass]="'bg-danger'"

@@ -1,10 +1,5 @@
 
-<div class="login-page vh-100">
-  <video loop autoplay muted id="vid">
-    <source src="./assets/tempimg/bg.mp4" type="video/mp4">
-    <source src="./assets/tempimg/bg.mp4" type="video/ogg">
-    Your browser does not support the video tag.
-  </video>
+<div class="login-page vh-100" style="background-color: #5e171b">
   <div class="p-4">
     <h2 class="text-white my-0">Welcome Back</h2>
     <p class="text-white text-50">Sign in to continue</p>
@@ -29,7 +24,7 @@
     <button (click)="signUp()" class="btn btn-primary btn-lg btn-block"><a class="verification.html" class="font-decoration-none">SIGN UP</a></button>
     <hr>
     <div class="py-2">
-      <button (submit)="redirectToLoginForm()" class="btn btn-lg btn-facebook btn-block"><i class="feather-facebook"></i> Already have an account? Sign in</button>
+      <button (click)="redirectToLoginForm()" class="btn btn-lg btn-facebook btn-block"> Already have an account? Sign in</button>
     </div>
     <h3 class="text-danger text-center">{{errorMessage}}</h3>
   </div>

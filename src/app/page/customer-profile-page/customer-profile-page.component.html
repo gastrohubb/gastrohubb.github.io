@@ -12,11 +12,12 @@
 
         <div class="bg-white rounded shadow mt-3 profile-details">
             <app-modal-link-block
-                    [title]="'My info - Master'"
+                    [title]="'My info - Restaurant'"
                     [subtitle]="'Click to add or edit'"
-                    [linkedToModalId]="'masterForm'"></app-modal-link-block>
-            <app-profile-form-master
-                    [modalId]="'masterForm'"> </app-profile-form-master>
+                    [linkedToModalId]="'customerForm'"></app-modal-link-block>
+            <app-profile-form-customer
+                    [modalId]="'customerForm'"
+                    (formUpdatedEventToParent) = "formUpdatedInChild()"> </app-profile-form-customer>
             <app-hyper-link-block
                     [iconClass]="'feather-phone'"
                     [iconColorClass]="'bg-danger'"

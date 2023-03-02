@@ -212,4 +212,26 @@ export class GhbServiceClientService {
     public getForCustomerAllIssuesWhereMasterApproved(userId: string): Observable<MasterApplyIssueEvent[]> {
         return this.http.get<MasterApplyIssueEvent[]>(this.uri + "/getForCustomerAllIssuesWhereMasterApproved/" + userId);
     }
+
+    public registerNewCustomer(customer: Customer): Observable<Customer> {
+        const data = {
+            name: customer.name,
+            phone: customer.phone,
+            ownerName: customer.ownerName,
+            ghbUser: this.sessionService.getUser()
+        }
+        return this.http.post<Customer>(this.uri + "/register/newCustomer", data);
+    }
+
+    public registerNewMaster(master: Master): Observable<Master> {
+        const data = {
+            name: master.name,
+            photo: master.photo,
+            domain: master.domain,
+            experience: master.experience,
+            workplace: master.workplace,
+            ghbUser: this.sessionService.getUser()
+        }
+        return this.http.post<Master>(this.uri + "/register/newMaster", data);
+    }
 }
