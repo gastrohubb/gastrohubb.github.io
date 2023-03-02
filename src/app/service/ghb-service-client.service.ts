@@ -54,11 +54,11 @@ export class GhbServiceClientService {
     }
 
     public getPageOfIssuesForByUserId(page: number, userId: string): Observable<any> {
-        return this.http.get<Issue>(this.uri + "/issues/search/findAllByCustomer_GhbUser_UserId?projection=full&userId=" + userId + "&size=20&page=" + page);
+        return this.http.get<Issue>(this.uri + "/issues/search/findAllByCustomer_GhbUser_UserId?projection=full&userId=" + userId + "&size=20&page=" + page + "&sort=timestamp,desc");
     }
 
     public getPageOfIssues(page: number): Observable<any> {
-        return this.http.get<Issue>(this.uri + "/issues/?projection=full&size=20&page=" + page);
+        return this.http.get<Issue>(this.uri + "/issues/?projection=full&size=20&page=" + page + "&sort=timestamp,desc");
     }
 
     public getPageOfMasters(page: number): Observable<any> {
@@ -209,5 +209,7 @@ export class GhbServiceClientService {
         return this.http.get<MasterApplyIssueEvent[]>(this.uri + "/getMastersApplicationsOnIssue/" + issueId);
     }
 
-
+    public getForCustomerAllIssuesWhereMasterApproved(userId: string): Observable<MasterApplyIssueEvent[]> {
+        return this.http.get<MasterApplyIssueEvent[]>(this.uri + "/getForCustomerAllIssuesWhereMasterApproved/" + userId);
+    }
 }

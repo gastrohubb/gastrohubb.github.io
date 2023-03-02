@@ -15,6 +15,7 @@ import {IssueExtendedPageComponent} from "./page/issue-extended-page/issue-exten
 import {MyIssuesMasterPageComponent} from "./page/my-issues-master-page/my-issues-master-page.component";
 import {FavoritesMasterPageComponent} from "./page/favorites-master-page/favorites-master-page.component";
 import {MyIssuesCustomerPageComponent} from "./page/my-issues-customer-page/my-issues-customer-page.component";
+import {FavoritesCustomerPageComponent} from "./page/favorites-customer-page/favorites-customer-page.component";
 
 const routes: Routes = [
   {path: '', component: RoleForkComponent},
@@ -34,7 +35,7 @@ const routes: Routes = [
   {path: 'master/issues/:id', component: IssueExtendedPageComponent, canActivate: [AuthGuardService]},
   {path: 'customer/issues/:id', component: IssueExtendedPageComponent, canActivate: [AuthGuardService]},
   {path: 'master/favorites', component: FavoritesMasterPageComponent, canActivate: [AuthGuardService]},
-  {path: 'customer/favorites', component: FavoritsPageComponent, canActivate: [AuthGuardService]},
+  {path: 'customer/favorites', component: FavoritesCustomerPageComponent, canActivate: [AuthGuardService]},
 ];
 
 @NgModule({
