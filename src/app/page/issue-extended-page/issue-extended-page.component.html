@@ -32,10 +32,23 @@
             <div *ngIf="appContext == 'master'" class="d-flex align-items-center">
                 <a href='#' *ngIf="applyTimestamp === undefined" class="btn btn-sm btn-outline-light ml-auto"
                    (click)="onApplyClicked($event)">Click here to quick Apply!</a>
-                <h4 *ngIf="applyTimestamp != undefined" class="font-weight-bold m-0 text-white"
-                    removed_class="pl-5">
-                    You applied on {{ applyTimestamp }}
-                </h4>
+                <div class="row">
+                    <div class="col-5" *ngIf="masterApplyIssueEventIfMasterSession.applyTimestamp != undefined">
+                        <h6 class="font-weight-bold m-0 text-white" removed_class="pl-5">
+                            You applied on {{ masterApplyIssueEventIfMasterSession.applyTimestamp }}
+                        </h6>
+                    </div>
+                    <div class="col-5" *ngIf="masterApplyIssueEventIfMasterSession.approveTimestamp != undefined">
+                        <h6 class="font-weight-bold m-0 text-warning" removed_class="pl-5">
+                            You approved on {{ masterApplyIssueEventIfMasterSession.approveTimestamp }}
+                        </h6>
+                    </div>
+                    <div class="col-5" *ngIf="masterApplyIssueEventIfMasterSession.declineTimestamp != undefined">
+                        <h6 class="font-weight-bold m-0 text-black-50" removed_class="pl-5">
+                            You declined on {{ masterApplyIssueEventIfMasterSession.declineTimestamp }}
+                        </h6>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -58,13 +71,14 @@
             </div>
         </div>
 
-        <div class="bg-light">
+        <div *ngIf="appContext == 'customer'" class="bg-light">
             <p class="font-weight-bold px-3 pt-3 m-0">Masters applied</p>
             <div *ngFor="let masterApplyEvent of masterApplyIssueEvent">
-                <app-master-apply-event-info-card-in-list  [masterApplyEvent]="masterApplyEvent"></app-master-apply-event-info-card-in-list>
+                <app-master-apply-event-info-card-in-list
+                        [masterApplyEvent]="masterApplyEvent"></app-master-apply-event-info-card-in-list>
             </div>
         </div>
     </div>
 </div>
-<br />
+<br/>
 <app-menu-bottom [appContext]="appContext"></app-menu-bottom>

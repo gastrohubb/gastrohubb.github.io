@@ -21,6 +21,7 @@ export class IssueExtendedPageComponent {
     title: string = "Issue Details"
     masterApplyIssueEvent: MasterApplyIssueEvent[] = [];
     applyTimestamp: any;
+    masterApplyIssueEventIfMasterSession: MasterApplyIssueEvent = new MasterApplyIssueEvent(null);
 
     constructor(private ghbClient: GhbServiceClientService,
                 private router: ActivatedRoute,
@@ -72,6 +73,7 @@ export class IssueExtendedPageComponent {
         this.ghbClient.saveMasterApplyIssueEvent(userId, issueId).subscribe({
             next: (response: MasterApplyIssueEvent) => {
                 this.applyTimestamp = response.applyTimestamp;
+                this.masterApplyIssueEventIfMasterSession = new MasterApplyIssueEvent(response);
             },
             error: (error: any) => {
                 console.error(error);
@@ -85,6 +87,7 @@ export class IssueExtendedPageComponent {
         this.ghbClient.getMasterApplyIssueEvent(userId, issueId).subscribe({
             next: (response: MasterApplyIssueEvent) => {
                 this.applyTimestamp = response.applyTimestamp;
+                this.masterApplyIssueEventIfMasterSession = new MasterApplyIssueEvent(response);
             },
             error: (error: any) => {
                 console.error(error);
