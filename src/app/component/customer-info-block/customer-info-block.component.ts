@@ -16,7 +16,7 @@ import {Customer} from "../../dto/Customer";
 export class CustomerInfoBlockComponent {
   private readonly ENDPOINT: string;
   @Input()
-  customer: Customer = new Customer();
+  customer: Customer = new Customer(null);
   @Input()
   user: GhbUser = new GhbUser();
 

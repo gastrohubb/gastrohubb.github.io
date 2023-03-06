@@ -17,7 +17,7 @@ export class ProfilePageComponent {
   details: any = "Short description for specialization";
 
   master: Master = new Master();
-  customer: Customer = new Customer();
+  customer: Customer = new Customer(null);
   user: GhbUser = new GhbUser();
   appContext: string;
 

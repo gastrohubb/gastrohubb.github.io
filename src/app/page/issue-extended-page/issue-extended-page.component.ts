@@ -15,7 +15,7 @@ import {MasterApplyIssueEvent} from "../../dto/MasterApplyIssueEvent";
 })
 export class IssueExtendedPageComponent {
 
-    issue: Issue = new Issue();
+    issue: Issue = new Issue(null);
     tries: number = 0; //todo: it not loading full data from first attempt. should be fixed.
     appContext: string;
     title: string = "Issue Details"
@@ -36,7 +36,7 @@ export class IssueExtendedPageComponent {
         if (id != null) {
             this.ghbClient.findIssueByIdFull(id)
                 .subscribe(issue => {
-                    this.issue = issue;
+                    this.issue = new Issue(issue);
 
                     this.getMastersAppliedOnIssue(issue.issueId);
                     if (!this.issue.photo && this.tries++ < 5) {

@@ -10,7 +10,7 @@ import {ContextService} from "../../service/context.service";
     styleUrls: ['./issue-page.component.css']
 })
 export class IssuePageComponent {
-    issue: Issue = new Issue();
+    issue: Issue = new Issue(null);
     tries: number = 0; //todo: it not loading full data from first attempt. should be fixed.
 
     constructor(private ghbClient: GhbServiceClientService,

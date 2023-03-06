@@ -9,7 +9,7 @@ import {SessionUtilService} from "../../service/session-util.service";
     styleUrls: ['./profile-form-customer.component.css']
 })
 export class ProfileFormCustomerComponent {
-    customer: Customer = new Customer();
+    customer: Customer = new Customer(null);
     @Input()
     modalId: any;
     @Output()

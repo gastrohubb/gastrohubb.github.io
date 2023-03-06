@@ -11,7 +11,7 @@ import {ContextService} from "../../service/context.service";
     styleUrls: ['./issue-form.component.css']
 })
 export class IssueFormComponent {
-    issue: Issue = new Issue();
+    issue: Issue = new Issue(null);
     fileList: any;
     imgSrc: any;
     errorMessage: any;
@@ -45,16 +45,15 @@ export class IssueFormComponent {
             this.errorMessage = "All fields are required"
             return;
         }
-        this.ghbClient.saveIssue(this.issue)
+        this.ghbClient.saveCustomerIssue(this.issue)
             .pipe(catchError(error => {
                 console.log("error saving issue:", error);
                 return new Observable<never>();
             }))
             .subscribe(issue => {
-                this.ghbClient.associateCustomerToIssue(issue.issueId);
                 this.ghbClient.saveIssueImages(this.fileList, issue.issueId);
 
-                this.issue = new Issue();
+                this.issue = new Issue(null);
                 this.imgSrc = null;
                 this.fileList = null;
                 this.errorMessage = null;

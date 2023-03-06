@@ -1,15 +1,15 @@
 <div class="col-12 pt-2">
     <div class="d-flex align-items-start list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
         <div class="p-2 list-card-image">
-            <img [src]="getImgById(masterApplyEvent.master?.ghbUser?.imgUuid)" class="img-fluid item-img w-100 square-center-cropped">
+            <img [src]="getImgById(masterApplyEvent.master.ghbUser.imgUuid)" class="img-fluid item-img w-100 square-center-cropped">
         </div>
         <div class="p-3 position-relative" style="width: 100%">
             <div class="list-card-body">
-                <div *ngIf="masterApplyEvent.master?.name != null">
-                    <h6 class="mb-1">{{masterApplyEvent.master?.name}}</h6>
-                    <p class="text-gray mb-3">Experience {{masterApplyEvent.master?.experience}} yr.</p>
-                    <p class="text-gray mb-3">City: {{masterApplyEvent.master?.workplace}}</p>
-                    <p class="text-gray mb-3">Domain: {{masterApplyEvent.master?.domain}}</p>
+                <div *ngIf="masterApplyEvent.master.name != null">
+                    <h6 class="mb-1">{{masterApplyEvent.master.name}}</h6>
+                    <p class="text-gray mb-3">Experience {{masterApplyEvent.master.experience}} yr.</p>
+                    <p class="text-gray mb-3">City: {{masterApplyEvent.master.workplace}}</p>
+                    <p class="text-gray mb-3">Domain: {{masterApplyEvent.master.domain}}</p>
                     <p class="text-gray mb-3" *ngIf="masterApplyEvent.applyTimestamp">Applied: {{masterApplyEvent.applyTimestamp}}</p>
                     <p class="text-gray mb-3 text-success" *ngIf="masterApplyEvent.approveTimestamp">Approved: {{masterApplyEvent.approveTimestamp}}</p>
                     <p class="text-gray mb-3 text-danger" *ngIf="masterApplyEvent.declineTimestamp">Declined: {{masterApplyEvent.declineTimestamp}}</p>

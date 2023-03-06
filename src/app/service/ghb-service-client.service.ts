@@ -134,7 +134,15 @@ export class GhbServiceClientService {
         return this.http.post<Issue>(this.uri + "/issues/", newIssue);
     }
 
-    public associateCustomerToIssue(issueId: string) {
+    public saveCustomerIssue(newIssue: Issue): Observable<Issue> {
+        const data = {
+            ghbUserId: this.sessionService.getUser().userId,
+            issue: newIssue
+        };
+        return this.http.post<Issue>(this.uri + "/customerCreateIssue/", data);
+    }
+
+    private associateCustomerToIssue(issueId: string) {
         this.findIssueById(issueId)
             .pipe()
             .subscribe(issue => {
