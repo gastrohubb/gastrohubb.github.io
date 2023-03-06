@@ -3,7 +3,7 @@
     <div class="osahan-restaurant-detail">
         <div class="p-3">
             <div class="pt-3">
-                <h2 class="font-weight-bold" [innerText]="issue.customer?.name"></h2>
+                <h2 class="font-weight-bold" [innerText]="issue.customer.name"></h2>
                 <p class="font-weight-light text-dark m-0" [innerText]="issue.city"></p>
                 <p class="font-weight-light text-dark m-0" [innerText]="issue.address"></p>
             </div>
@@ -13,10 +13,10 @@
             <div class="pt-2">
                 <div class="row">
                     <div class="col-6">
-                        <p class="font-weight-bold m-0" [innerText]="issue.customer?.ownerName"></p>
+                        <p class="font-weight-bold m-0" [innerText]="issue.customer.ownerName"></p>
                     </div>
                     <div class="col-6">
-                        <p class="font-weight-bold m-0" [innerText]="issue.customer?.phone"></p>
+                        <p class="font-weight-bold m-0" [innerText]="issue.customer.phone"></p>
                     </div>
                 </div>
             </div>
