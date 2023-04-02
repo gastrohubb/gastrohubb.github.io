@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
@@ -46,6 +46,8 @@ import { MasterApplyEventInfoCardInListComponent } from './component/master-appl
 import { FavoritesMasterPageComponent } from './page/favorites-master-page/favorites-master-page.component';
 import { FavoritesCustomerPageComponent } from './page/favorites-customer-page/favorites-customer-page.component';
 import { MyIssuesCustomerPageComponent } from './page/my-issues-customer-page/my-issues-customer-page.component';
+import {initializeKeycloak} from "./init/keycloak-init.factory";
+import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 
 @NgModule({
     declarations: [
@@ -95,11 +97,18 @@ import { MyIssuesCustomerPageComponent } from './page/my-issues-customer-page/my
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        KeycloakAngularModule
     ],
     providers: [
         HttpClientModule,
-        DatePipe],
+        DatePipe,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initializeKeycloak,
+            multi: true,
+            deps: [KeycloakService]
+        }],
     bootstrap: [AppComponent]
 })
 export class AppModule {

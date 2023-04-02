@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {GhbServiceClientService} from "../../service/ghb-service-client.service";
 import {SessionUtilService} from "../../service/session-util.service";
 import {ContextService} from "../../service/context.service";
+import {KeycloakService} from "keycloak-angular";
 
 @Component({
   selector: 'app-master-profile-page',
@@ -25,7 +26,8 @@ export class MasterProfilePageComponent {
   constructor(private router: Router,
               private ghbService: GhbServiceClientService,
               private sessionService: SessionUtilService,
-              private context: ContextService) {
+              private context: ContextService,
+              private keycloak: KeycloakService) {
     this.appContext = context.getAppContextPath();
   }
 
@@ -41,7 +43,7 @@ export class MasterProfilePageComponent {
   }
 
   logout() {
-    sessionStorage.removeItem("user");
+    // this.keycloak.logout();
   }
 
 

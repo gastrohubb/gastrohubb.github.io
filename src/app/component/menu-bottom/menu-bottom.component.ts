@@ -148,11 +148,15 @@ export class MenuBottomComponent {
   }
 
   canActivateOrRedirectToLogin(): boolean {
-        return this.authGuardService.canActivateOrRedirectToLogin();
+        return true;
+        // todo: add secure
+        // return this.authGuardService.canActivateOrRedirectToLogin();
     }
 
     canActivateOrNot(): boolean {
-        return this.authGuardService.canActivateOrNot();
+        return true;
+        // todo: add secure
+        // return this.authGuardService.canActivateOrNot();
     }
 
     isCustomer() {
