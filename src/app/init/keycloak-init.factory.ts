@@ -6,14 +6,14 @@ export function initializeKeycloak(
     return () =>
         keycloak.init({
             config: {
-                url: 'http://localhost:8090' + '/auth',
+                url: 'https://18.133.48.89:8443/' + '/auth',
                 realm: 'usterkafix',
-                clientId: 'frontend'
+                clientId: 'gastrohubb.github.io'
             },
             initOptions: {
                 // pkceMethod: 'S256',
                 // must match to the configured value in keycloak
-                redirectUri: 'http://localhost:4200/*',
+                redirectUri: 'https://gastrohubb.github.io/*',
                 // this will solved the error
                 checkLoginIframe: false
             }
