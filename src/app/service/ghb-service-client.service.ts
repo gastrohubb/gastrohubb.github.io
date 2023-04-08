@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {GhbUser} from "../dto/GhbUser";
-import {catchError, Observable} from "rxjs";
+import {catchError, lastValueFrom, Observable} from "rxjs";
 import {NewUser} from "../dto/NewUser";
 import {Master} from "../dto/Master";
 import {SessionUtilService} from "./session-util.service";
@@ -10,6 +10,7 @@ import {Issue} from "../dto/Issue";
 import {FileUploadService} from "./file-upload.service";
 import {ConfigService} from "./config.service";
 import {MasterApplyIssueEvent} from "../dto/MasterApplyIssueEvent";
+import {KeycloakUser} from "../dto/KeycloakUser";
 
 @Injectable({
     providedIn: 'root'
@@ -29,9 +30,30 @@ export class GhbServiceClientService {
         return this.http.post<GhbUser>(this.uri + "/register", user);
     }
 
+    public getOrCreateUser(user: KeycloakUser): Observable<GhbUser> {
+        return this.http.post<GhbUser>(this.uri + "/getOrCreateUser", user);
+    }
+
+    public registerKeycloakUser(user: KeycloakUser): Observable<GhbUser> {
+        return this.http.post<GhbUser>(this.uri + "/register", user);
+    }
+
+    public async registerNewUser(user: GhbUser): Promise<GhbUser> {
+        const observable = this.http.post<GhbUser>(this.uri + "/register", user);
+        const newUser = await lastValueFrom(observable);
+        return newUser;
+    }
+
     public getUserById(userId: string): Observable<GhbUser> { //todo: add session token
         return this.http.get<GhbUser>(this.uri + "/ghbUsers/" + userId);
     }
+
+    public async findUserByKeycloakId(keycloakId: string): Promise<GhbUser> {
+        const observable = this.http.get<GhbUser>(this.uri + "/ghbUsers/search/findByKeycloakId?keycloakId=" + keycloakId);
+        const result = await lastValueFrom(observable);
+        return result;
+    }
+
 
     public findUserByEmail(email: string): Observable<GhbUser> {
         return this.http.get<GhbUser>(this.uri + "/ghbUsers/search/findByEmail?email=" + email);

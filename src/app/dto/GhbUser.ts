@@ -1,5 +1,6 @@
 export class GhbUser {
   public userId: any;
+  keycloakId: any;
   userName: any;
   locale: any;
   email: any;
@@ -14,6 +15,7 @@ export class GhbUser {
   public static fromJson(json:any): GhbUser {
     let user: GhbUser = new GhbUser();
     user.userId = json.userId;
+    user.keycloakId = json.keycloakId;
     user.userName = json.userName;
     user.locale = json.locale;
     user.email = json.email;
