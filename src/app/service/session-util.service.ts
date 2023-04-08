@@ -56,7 +56,7 @@ export class SessionUtilService {
                 keycloakUser.setEmail(userProfile.email);
                 keycloakUser.setUserId(userProfile.id);
                 console.log(keycloakUser);
-                this.http.post<GhbUser>(this.config.apiUrl() + "/register", keycloakUser)
+                this.http.post<GhbUser>(this.config.apiUrl() + "/getOrCreateUser", keycloakUser)
                     .pipe(
                         catchError(error => {
                             console.log(error)
