@@ -6,7 +6,7 @@ export function initializeKeycloak(
     return () =>
         keycloak.init({
             config: {
-                url: 'https://18.133.48.89:8443' + '/auth',
+                url: 'https://authusterka.tutrit.com/' + '/auth',
                 realm: 'usterkafix',
                 clientId: 'gastrohubb.github.io'
             },
