@@ -11,7 +11,7 @@ import {ContextService} from "../../service/context.service";
     styleUrls: ['./home-master-page.component.css']
 })
 export class HomeMasterPageComponent {
-    title: string = 'Issues';
+    txtIssues: string = $localize `Issues`;
     issues: Issue[] = [];
     scrollThreshold: number = 1000;
     currentPage: number = 0;

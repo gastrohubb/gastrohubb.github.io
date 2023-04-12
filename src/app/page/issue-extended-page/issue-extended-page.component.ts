@@ -18,7 +18,7 @@ export class IssueExtendedPageComponent {
     issue: Issue = new Issue(null);
     tries: number = 0; //todo: it not loading full data from first attempt. should be fixed.
     appContext: string;
-    title: string = "Issue Details"
+    txtIssueDetails: string = $localize `Issue Details`;
     masterApplyIssueEvent: MasterApplyIssueEvent[] = [];
     applyTimestamp: any;
     masterApplyIssueEventIfMasterSession: MasterApplyIssueEvent = new MasterApplyIssueEvent(null);

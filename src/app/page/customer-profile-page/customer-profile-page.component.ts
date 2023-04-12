@@ -21,8 +21,13 @@ export class CustomerProfilePageComponent {
   customer: Customer = new Customer(null);
   user: GhbUser = new GhbUser();
   appContext: string;
-  myInfoRestaurant: string = $localize `My info - Restaurant`;
-  clickToAddOrEdit: string = $localize `Click to add or edit`;
+
+  txtMyInfoRestaurant: string = $localize `My info - Restaurant`;
+  txtClickToAddOrEdit: string = $localize `Click to add or edit`;
+  txtContact: string = $localize`Contact`;
+  txtTermsOfUse: string = $localize `Term of use`;
+  txtPrivacyPolicy: string = $localize `Privacy policy`;
+  txtLogout: string = $localize `Logout`;
 
   constructor(private router: Router,
               private ghbService: GhbServiceClientService,

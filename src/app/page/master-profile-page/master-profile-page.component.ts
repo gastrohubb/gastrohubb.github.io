@@ -28,6 +28,13 @@ export class MasterProfilePageComponent {
 
   userId: string = "no Id yet";
   userrrr: GhbUser = new GhbUser();
+    txtMyInfoMaster: string = $localize `My info - Master`;
+    txtClickToAddOrEdit: string = $localize `Click to add or edit`;
+    txtAddress: string = $localize`Address`;
+    txtContact: string = $localize`Contact`;
+    txtTermsOfUse: string = $localize`Term of use`;
+    txtPrivacyPolicy: string = $localize`Privacy policy`;
+    txtLogout: string = $localize`Logout`;
 
   constructor(private router: Router,
               private ghbService: GhbServiceClientService,

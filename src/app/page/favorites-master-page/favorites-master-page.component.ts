@@ -11,7 +11,7 @@ import {GhbServiceClientService} from "../../service/ghb-service-client.service"
   styleUrls: ['./favorites-master-page.component.css']
 })
 export class FavoritesMasterPageComponent {
-  title: string = "Approved and Done issues";
+  txtApprovedAndDoneIssues: string = $localize `Approved and Done issues`;
   issues: Issue[] = [];
   masterApplyIssueEvent: MasterApplyIssueEvent[] = [];
   contextPath: string;

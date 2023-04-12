@@ -1,7 +1,7 @@
 <div class="osahan-profile">
     <div class="bg-primary border-bottom px-3 pt-3 pb-5 d-flex align-items-center">
         <a class="toggle togglew toggle-2" href="#"><span></span></a>
-        <h4 class="font-weight-bold m-0 text-white">Master Profile</h4>
+        <h4 class="font-weight-bold m-0 text-white" i18n>Master Profile</h4>
     </div>
     <!-- profile -->
     <div class="p-3 osahan-profile">
@@ -12,8 +12,8 @@
 
         <div class="bg-white rounded shadow mt-3 profile-details">
             <app-modal-link-block
-                    [title]="'My info - Master'"
-                    [subtitle]="'Click to add or edit'"
+                    [title]="txtMyInfoMaster"
+                    [subtitle]="txtClickToAddOrEdit"
                     [linkedToModalId]="'masterForm'"></app-modal-link-block>
             <app-profile-form-master
                     [modalId]="'masterForm'"
@@ -21,27 +21,27 @@
             <app-modal-link-with-icon-block-component
                     [iconClass]="'feather-phone'"
                     [iconColorClass]="'bg-danger'"
-                    [text]="'Address'"
+                    [text]="txtAddress"
                     [linkedToModalId]="'masterForm'"></app-modal-link-with-icon-block-component>
             <app-hyper-link-block
                     [iconClass]="'feather-phone'"
                     [iconColorClass]="'bg-danger'"
-                    [text]="'Contact'"
+                    [text]="txtContact"
                     [hyperLink]="'/contact-us.html'"></app-hyper-link-block>
             <app-hyper-link-block
                     [iconClass]="'feather-info'"
                     [iconColorClass]="'bg-success'"
-                    [text]="'Term of use'"
+                    [text]="txtTermsOfUse"
                     [hyperLink]="'/terms.html'"></app-hyper-link-block>
             <app-hyper-link-block
                     [iconClass]="'feather-lock'"
                     [iconColorClass]="'bg-warning'"
-                    [text]="'Privacy policy'"
+                    [text]="txtPrivacyPolicy"
                     [hyperLink]="'/privacy.html'"></app-hyper-link-block>
             <app-hyper-link-block
                     [iconClass]="'feather-log-out'"
                     [iconColorClass]="'bg-primary'"
-                    [text]="'Logout'"
+                    [text]="txtLogout"
                     [hyperLink]="appContext+'/profile'" (click)="logout()"></app-hyper-link-block>
         </div>
     </div>

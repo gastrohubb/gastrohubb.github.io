@@ -1,56 +1,81 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-US" datatype="plaintext" original="ng2.template">
-    <body>
-      <trans-unit id="2821179408673282599" datatype="html">
+
+        <source>Issue details</source>
+        <target>Issue details</target>
+        <source>In which city it should be done ?</source>
+        <target>In which city it should be done ?</target>
+        <source>Enter restaurant address</source>
+        <target>Enter restaurant address</target>
+        <source>Upload file</source>
+        <target>Upload file</target>
+        <source>Close</source>
+        <target>Close</target>
+        <source>Save </source>
+        <target>Save </target>
+        <source>All fields are required</source>
+        <target>All fields are required</target>
         <source>Home</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/component/menu-bottom/menu-bottom.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="232050922346936574" datatype="html">
+        <target>Home</target>
         <source>Trending</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/component/menu-bottom/menu-bottom.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4085930761302974863" datatype="html">
+        <target>Trending</target>
         <source>Favorites</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/component/menu-bottom/menu-bottom.component.html</context>
-          <context context-type="linenumber">32</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4915431133669985304" datatype="html">
+        <target>Favorites</target>
         <source>Profile</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/component/menu-bottom/menu-bottom.component.html</context>
-          <context context-type="linenumber">38</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="317446394398805914" datatype="html">
+        <target>Profile</target>
         <source>Restaurant Profile</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/page/customer-profile-page/customer-profile-page.component.html</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6470061800287538100" datatype="html">
+        <target>Restaurant Profile</target>
         <source>My info - Restaurant</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/page/customer-profile-page/customer-profile-page.component.ts</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="762505749544932203" datatype="html">
+        <target>My info - Restaurant</target>
         <source>Click to add or edit</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/page/customer-profile-page/customer-profile-page.component.ts</context>
-          <context context-type="linenumber">25</context>
-        </context-group>
-      </trans-unit>
-    </body>
-  </file>
-</xliff>
+        <target>Click to add or edit</target>
+        <source>Contact</source>
+        <target>Contact</target>
+        <source>Term of use</source>
+        <target>Term of use</target>
+        <source>Privacy policy</source>
+        <target>Privacy policy</target>
+        <source>Logout</source>
+        <target>Logout</target>
+        <source>My selected Masters</source>
+        <target>My selected Masters</target>
+        <source>Approved and Done issues</source>
+        <target>Approved and Done issues</target>
+        <source>Masters</source>
+        <target>Masters</target>
+        <source>Issues</source>
+        <target>Issues</target>
+        <source>Click here to quick Apply!</source>
+        <target>Click here to quick Apply!</target>
+        <source> You applied on <x id="INTERPOLATION" equiv-text="{{ masterApplyIssueEventIfMasterSession.applyTimestamp }}"/> </source>
+        <target> You applied on <x id="INTERPOLATION" equiv-text="{{ masterApplyIssueEventIfMasterSession.applyTimestamp }}"/> </target>
+        <source> You approved on <x id="INTERPOLATION" equiv-text="{{ masterApplyIssueEventIfMasterSession.approveTimestamp }}"/> </source>
+        <target> You approved on <x id="INTERPOLATION" equiv-text="{{ masterApplyIssueEventIfMasterSession.approveTimestamp }}"/> </target>
+        <source> You declined on <x id="INTERPOLATION" equiv-text="{{ masterApplyIssueEventIfMasterSession.declineTimestamp }}"/> </source>
+        <target> You declined on <x id="INTERPOLATION" equiv-text="{{ masterApplyIssueEventIfMasterSession.declineTimestamp }}"/> </target>
+        <source>Images</source>
+        <target>Images</target>
+        <source>Masters applied</source>
+        <target>Masters applied</target>
+        <source>Issue Details</source>
+        <target>Issue Details</target>
+        <source>DESCRIPTION</source>
+        <target>DESCRIPTION</target>
+        <source>Location</source>
+        <target>Location</target>
+        <source>Restaurant</source>
+        <target>Restaurant</target>
+        <source>Apply</source>
+        <target>Apply</target>
+        <source>Master Profile</source>
+        <target>Master Profile</target>
+        <source>My info - Master</source>
+        <target>My info - Master</target>
+        <source>Address</source>
+        <target>Address</target>
+        <source>My issues</source>
+        <target>My issues</target>
+        <source>Issues applied</source>
+        <target>Issues applied</target>
+        <source>MASTER</source>
+        <target>MASTER</target>
+        <source>RESTAURANT</source>
+        <target>RESTAURANT</target>

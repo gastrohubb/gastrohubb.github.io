@@ -12,7 +12,7 @@ import {ContextService} from "../../service/context.service";
     styleUrls: ['./my-issues-master-page.component.css']
 })
 export class MyIssuesMasterPageComponent {
-    title: string = "Issues applied";
+    txtIssuesApplied: string = $localize `Issues applied`;
     issues: Issue[] = [];
     masterApplyIssueEvent: MasterApplyIssueEvent[] = [];
     contextPath: string = "";

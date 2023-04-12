@@ -11,7 +11,7 @@ import {Master} from "../../dto/Master";
     styleUrls: ['./home-customer-page.component.css']
 })
 export class HomeCustomerPageComponent {
-    title: string = 'Masters';
+    txtMasters: string = $localize `Masters`;
     issues: Issue[] = [];
     masters: Master[] = [];
     scrollThreshold: number = 1000;

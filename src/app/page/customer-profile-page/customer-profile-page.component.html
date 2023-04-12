@@ -12,8 +12,8 @@
 
         <div class="bg-white rounded shadow mt-3 profile-details">
             <app-modal-link-block
-                    [title]="myInfoRestaurant"
-                    [subtitle]="clickToAddOrEdit"
+                    [title]="txtMyInfoRestaurant"
+                    [subtitle]="txtClickToAddOrEdit"
                     [linkedToModalId]="'customerForm'"></app-modal-link-block>
             <app-profile-form-customer
                     [modalId]="'customerForm'"
@@ -21,22 +21,22 @@
             <app-hyper-link-block
                     [iconClass]="'feather-phone'"
                     [iconColorClass]="'bg-danger'"
-                    [text]="'Contact'"
+                    [text]="txtContact"
                     [hyperLink]="'/contact-us.html'"></app-hyper-link-block>
             <app-hyper-link-block
                     [iconClass]="'feather-info'"
                     [iconColorClass]="'bg-success'"
-                    [text]="'Term of use'"
+                    [text]="txtTermsOfUse"
                     [hyperLink]="'/terms.html'"></app-hyper-link-block>
             <app-hyper-link-block
                     [iconClass]="'feather-lock'"
                     [iconColorClass]="'bg-warning'"
-                    [text]="'Privacy policy'"
+                    [text]="txtPrivacyPolicy"
                     [hyperLink]="'/privacy.html'"></app-hyper-link-block>
             <app-hyper-link-block
                     [iconClass]="'feather-log-out'"
                     [iconColorClass]="'bg-primary'"
-                    [text]="'Logout'"
+                    [text]="txtLogout"
                     [hyperLink]="appContext+'/profile'" (click)="logout()"></app-hyper-link-block>
         </div>
     </div>

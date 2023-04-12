@@ -14,7 +14,7 @@ import {MasterApplyIssueEvent} from "../../dto/MasterApplyIssueEvent";
   styleUrls: ['./favorites-customer-page.component.css']
 })
 export class FavoritesCustomerPageComponent {
-  title: string = 'My selected Masters';
+  txtMySelectedMasters: string = $localize `My selected Masters`;
   issues: Issue[] = [];
   masters: Master[] = [];
   masterApplyIssueEvents: MasterApplyIssueEvent[] = [];

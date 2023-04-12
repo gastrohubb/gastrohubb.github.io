@@ -42,7 +42,7 @@ export class IssueFormComponent {
         if (!this.fileList
             || !this.issue.description
             || !this.issue.city) {
-            this.errorMessage = "All fields are required"
+            this.errorMessage = $localize `All fields are required`;
             return;
         }
         this.ghbClient.saveCustomerIssue(this.issue)

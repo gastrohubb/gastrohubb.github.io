@@ -11,7 +11,7 @@ import {ContextService} from "../../service/context.service";
   styleUrls: ['./my-issues-customer-page.component.css']
 })
 export class MyIssuesCustomerPageComponent {
-  title: string = "My issues";
+  txtMyIssues: string = $localize `My issues`;
   issues: Issue[] = [];
   scrollThreshold: number = 1000;
   currentPage: number = 0;
