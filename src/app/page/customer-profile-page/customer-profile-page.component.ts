@@ -21,6 +21,8 @@ export class CustomerProfilePageComponent {
   customer: Customer = new Customer(null);
   user: GhbUser = new GhbUser();
   appContext: string;
+  myInfoRestaurant: string = $localize `My info - Restaurant`;
+  clickToAddOrEdit: string = $localize `Click to add or edit`;
 
   constructor(private router: Router,
               private ghbService: GhbServiceClientService,

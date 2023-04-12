@@ -54,9 +54,9 @@ export class MenuBottomComponent {
         if (userJson != null) {
             this.user = userJson;
         }
-      this.setRoleContextToNavigationLinks();
+        this.setRoleContextToNavigationLinks();
 
-      switch (window.location.pathname) {
+        switch (window.location.pathname) {
             case "/home":
                 this.homeColClass = this.colClass + " selected";
                 this.myIssuesColClass = this.colClass;
@@ -124,30 +124,30 @@ export class MenuBottomComponent {
         }
     }
 
-  private setRoleContextToNavigationLinks() {
-    switch (this.context.getAppContextPath()) {
-      case "master":
-        this.home = this.masterAppContext + this.home;
-        this.myIssues = this.masterAppContext + this.myIssues;
-        this.issueForm = this.masterAppContext + this.issueForm;
-        this.favorites = this.masterAppContext + this.favorites;
-        this.profile = this.masterAppContext + this.profile;
-        break;
-      case "customer":
-        this.home = this.customerAppContext + this.home;
-        this.myIssues = this.customerAppContext + this.myIssues;
-        this.issueForm = this.customerAppContext + this.issueForm;
-        this.favorites = this.customerAppContext + this.favorites;
-        this.profile = this.customerAppContext + this.profile;
-        break;
+    private setRoleContextToNavigationLinks() {
+        switch (this.context.getAppContextPath()) {
+            case "master":
+                this.home = this.masterAppContext + this.home;
+                this.myIssues = this.masterAppContext + this.myIssues;
+                this.issueForm = this.masterAppContext + this.issueForm;
+                this.favorites = this.masterAppContext + this.favorites;
+                this.profile = this.masterAppContext + this.profile;
+                break;
+            case "customer":
+                this.home = this.customerAppContext + this.home;
+                this.myIssues = this.customerAppContext + this.myIssues;
+                this.issueForm = this.customerAppContext + this.issueForm;
+                this.favorites = this.customerAppContext + this.favorites;
+                this.profile = this.customerAppContext + this.profile;
+                break;
+        }
     }
-  }
 
-  isActive(path: string): boolean {
+    isActive(path: string): boolean {
         return this.router.url.startsWith(path);
-  }
+    }
 
-  canActivateOrRedirectToLogin(): boolean {
+    canActivateOrRedirectToLogin(): boolean {
         return true;
         // todo: add secure
         // return this.authGuardService.canActivateOrRedirectToLogin();

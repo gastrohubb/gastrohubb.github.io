@@ -25,7 +25,6 @@ import {IssueFormPageComponent} from './page/issue-form-page/issue-form-page.com
 import {PageHeaderComponent} from './component/page-header/page-header.component';
 import {FavoritsPageComponent} from './page/favorits-page/favorits-page.component';
 import {MasterProfileComponent} from './page/master-profile/master-profile.component';
-import {CustomerProfileComponent} from './page/customer-profile/customer-profile.component';
 import {MasterProfilePageComponent} from './page/master-profile-page/master-profile-page.component';
 import {CustomerProfilePageComponent} from './page/customer-profile-page/customer-profile-page.component';
 import {MasterInfoBlockComponent} from './component/master-info-block/master-info-block.component';
@@ -72,7 +71,6 @@ import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
         PageHeaderComponent,
         FavoritsPageComponent,
         MasterProfileComponent,
-        CustomerProfileComponent,
         MasterProfilePageComponent,
         CustomerProfilePageComponent,
         MasterInfoBlockComponent,

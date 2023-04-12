@@ -1,7 +1,7 @@
 <div class="osahan-profile">
     <div class="bg-primary border-bottom px-3 pt-3 pb-5 d-flex align-items-center">
         <a class="toggle togglew toggle-2" href="#"><span></span></a>
-        <h4 class="font-weight-bold m-0 text-white">Restaurant Profile</h4>
+        <h4 class="font-weight-bold m-0 text-white" i18n>Restaurant Profile</h4>
     </div>
     <!-- profile -->
     <div class="p-3 osahan-profile">
@@ -12,8 +12,8 @@
 
         <div class="bg-white rounded shadow mt-3 profile-details">
             <app-modal-link-block
-                    [title]="'My info - Restaurant'"
-                    [subtitle]="'Click to add or edit'"
+                    [title]="myInfoRestaurant"
+                    [subtitle]="clickToAddOrEdit"
                     [linkedToModalId]="'customerForm'"></app-modal-link-block>
             <app-profile-form-customer
                     [modalId]="'customerForm'"

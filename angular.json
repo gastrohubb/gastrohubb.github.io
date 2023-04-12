@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "gastrohubb": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "pl-PL": "src/locale/messages.pl.xlf"
+        }
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,6 +19,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": ["pl-PL"],
             "outputPath": "dist/gastrohubb",
             "index": "src/index.html",
             "main": "src/main.ts",

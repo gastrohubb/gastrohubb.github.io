@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="2821179408673282599" datatype="html">
+        <source>Home</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/component/menu-bottom/menu-bottom.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="232050922346936574" datatype="html">
+        <source>Trending</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/component/menu-bottom/menu-bottom.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4085930761302974863" datatype="html">
+        <source>Favorites</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/component/menu-bottom/menu-bottom.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4915431133669985304" datatype="html">
+        <source>Profile</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/component/menu-bottom/menu-bottom.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="317446394398805914" datatype="html">
+        <source>Restaurant Profile</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page/customer-profile-page/customer-profile-page.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6470061800287538100" datatype="html">
+        <source>My info - Restaurant</source>
+        <target>Моя инфа - ресторан</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page/customer-profile-page/customer-profile-page.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="762505749544932203" datatype="html">
+        <source>Click to add or edit</source>
+        <target>Нажми абы добавить або редактировать</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/page/customer-profile-page/customer-profile-page.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

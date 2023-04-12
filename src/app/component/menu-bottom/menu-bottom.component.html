@@ -4,14 +4,14 @@
     <div [ngClass]="isActive(home) ? 'col selected' : 'col'">
       <a [routerLink]="home" [ngClass]="isActive(home) ? activeLinkClass : linkClass">
         <p class="h4 m-0"><i [className]="homeIconClass"></i></p>
-        Home
+        <span i18n>Home</span>
       </a>
     </div>
 
     <div [ngClass]="isActive(myIssues) ? 'col selected' : 'col'">
       <a [routerLink]="myIssues" [ngClass]="isActive(myIssues) ? activeLinkClass : linkClass">
         <p class="h4 m-0"><i [className]="myIssuesIconClass"></i></p>
-        Trending
+        <span i18n>Trending</span>
       </a>
     </div>
 
@@ -29,13 +29,13 @@
     <div [ngClass]="isActive(favorites) ? 'col selected' : 'col'">
       <a [routerLink]="favorites" [ngClass]="isActive(favorites) ? activeLinkClass : linkClass">
         <p class="h4 m-0"><i [className]="favoritesIconClass"></i></p>
-        Favorites
+        <span i18n>Favorites</span>
       </a>
     </div>
     <div [ngClass]="isActive(profile) ? 'col selected' : 'col'">
       <a [routerLink]="profile" [ngClass]="isActive(profile) ? activeLinkClass : linkClass">
         <p class="h4 m-0"><i [className]="profileIconClass" ></i></p>
-        Profile
+        <span i18n>Profile</span>
       </a>
     </div>
 
