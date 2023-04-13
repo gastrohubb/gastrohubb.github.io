@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 export class MenuBottomComponent {
     @Input()
     appContext: string = "";
+    appContextPath: string = window.location.pathname;
     @Input()
     currentPagePath: any;
     setClass: boolean = false;
@@ -45,7 +46,7 @@ export class MenuBottomComponent {
     profile: string = "/profile";
 
     constructor(private authGuardService: AuthGuardService,
-                private context: ContextService,
+                public context: ContextService,
                 private router: Router) {
     }
 
@@ -56,7 +57,7 @@ export class MenuBottomComponent {
         }
         this.setRoleContextToNavigationLinks();
 
-        switch (window.location.pathname) {
+        switch (window.location.pathname) { //todo: looks like this doesn't used
             case "/home":
                 this.homeColClass = this.colClass + " selected";
                 this.myIssuesColClass = this.colClass;
