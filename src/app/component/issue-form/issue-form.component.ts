@@ -88,6 +88,16 @@ export class IssueFormComponent {
         if (event != null && event.target != null) {
             const target = event.target as HTMLInputElement;
             if (target.files != null && target.files[0] != null) {
+                const maxSize = 1024 * 1024 * 5;
+                if (target.files[0].size >= maxSize) {
+                    alert(`File is too big`);
+                    return;
+                }
+                const pattern: RegExp = /^image\//;
+                if (!pattern.test(target.files[0].type)) {
+                    alert(`Type not supported (not an image)`);
+                    return;
+                }
                 this.previewFile(target.files)
             }
         }
