@@ -35,6 +35,9 @@
                    class="form-control"
                    required/>
           </div>
+          <div class="col-md-12 form-group">
+            <label class="form-label" i18n>Add image file (picture) from Gallery</label>
+          </div>
             <input type="file" accept="image/*" (change)="selectFile($event)" placeholder="Upload file" i18n-placeholder>
           <div *ngIf="imgSrc">
             <img [src]="imgSrc" class="square-center-cropped">
@@ -54,4 +57,3 @@
     </div>
   </div>
 </div>
-
