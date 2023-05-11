@@ -206,6 +206,7 @@ export class GhbServiceClientService {
                     }))
                     .subscribe(issue => {
                         issue.photo = this.uri + "/files/" + id;
+                        issue.imgContainer =
                         this.updateIssue(issue);
                     });
             })

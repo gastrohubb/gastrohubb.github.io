@@ -10,6 +10,7 @@ export class Issue {
   issueStatus: string;
   timestamp: string;
   customer: Customer;
+  imgContainer: any;
   _links: any;
 
 
