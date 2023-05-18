@@ -12,8 +12,8 @@ import {ContextService} from "../../service/context.service";
 })
 export class IssueFormComponent {
     issue: Issue = new Issue(null);
-    fileList: any;
-    imgSrc: any;
+    fileList: File[] = [];
+    imgSrcList: string[] = [];
     errorMessage: any;
     @Input()
     previousPage: any;
@@ -45,22 +45,33 @@ export class IssueFormComponent {
             this.errorMessage = $localize `All fields are required`;
             return;
         }
-        this.ghbClient.saveCustomerIssue(this.issue)
+        const issueFormData = this.prepareFormData(this.issue);
+        this.ghbClient.saveCustomerIssueWithImages(issueFormData)
             .pipe(catchError(error => {
                 console.log("error saving issue:", error);
                 return new Observable<never>();
             }))
             .subscribe(issue => {
-                this.ghbClient.saveIssueImages(this.fileList, issue.issueId);
-
                 this.issue = new Issue(null);
-                this.imgSrc = null;
-                this.fileList = null;
+                this.imgSrcList = [];
+                this.fileList = [];
                 this.errorMessage = null;
                 let path: string = this.context.getAppContextPath();
                 this.router.navigate([path + '/issues', issue.issueId]);
             });
+    }
 
+    prepareFormData(issue: Issue): FormData {
+        const formData = new FormData();
+        formData.append(
+            'issue',
+            new Blob([JSON.stringify(issue)], {type: 'application/json'})
+        );
+
+        for(const element of this.fileList) {
+            formData.append('images', element);
+        }
+        return formData;
     }
 
     back() {
@@ -85,29 +96,53 @@ export class IssueFormComponent {
 
     // At the file input element (change)="selectFile($event)"
     selectFile(event: Event) {
-        if (event != null && event.target != null) {
+        if (event && event.target) {
             const target = event.target as HTMLInputElement;
-            if (target.files != null && target.files[0] != null) {
-                const maxSize = 1024 * 1024 * 5;
-                if (target.files[0].size >= maxSize) {
-                    alert(`File is too big`);
-                    return;
+            if (target.files && target.files.length > 0) {
+                const selectedFiles = Array.from(target.files);
+                const validationError = this.validateFiles(selectedFiles);
+                if (!validationError) {
+                    this.fileList.push(...selectedFiles);
+                    this.previewFile(this.fileList);
+                } else {
+                    this.errorMessage = validationError;
                 }
-                const pattern: RegExp = /^image\//;
-                if (!pattern.test(target.files[0].type)) {
-                    alert(`Type not supported (not an image)`);
-                    return;
-                }
-                this.previewFile(target.files)
             }
         }
     }
 
-    previewFile(files: FileList) {
-        let file = files[0];
-        const reader = new FileReader();
-        reader.onload = () => this.imgSrc = reader.result;
-        reader.readAsDataURL(file);
-        this.fileList = files;
+    validateFiles(files: File[]): string | null {
+        const maxSizePerFile = 1024 * 1024 * 5;
+        const maxSizeTotal = 1024 * 1024 * 6;
+        const pattern: RegExp = /^image\//;
+        let totalSize = this.fileList.reduce((sum, file) => sum + file.size, 0);
+
+        for (const file of files) {
+            if (file.size > maxSizePerFile) {
+                return `File "${file.name}" is too big. Maximum file size is 5MB`;
+            }
+
+            if (!pattern.test(file.type)) {
+                return `File "${file.name}" is not an image`;
+            }
+            totalSize += file.size;
+        }
+
+        if (totalSize > maxSizeTotal) {
+            return "The total size of selected files exceeds the maximum limit of 50MB";
+        }
+
+        return null;
+    }
+
+    previewFile(files: File[]) {
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const reader = new FileReader();
+            reader.onload = () => {
+                this.imgSrcList[i] = reader.result as string;
+            };
+            reader.readAsDataURL(file);
+        }
     }
 }

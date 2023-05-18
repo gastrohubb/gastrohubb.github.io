@@ -38,9 +38,11 @@
           <div class="col-md-12 form-group">
             <label class="form-label" i18n>Add image file (picture) from Gallery</label>
           </div>
-            <input type="file" accept="image/*" (change)="selectFile($event)" placeholder="Upload file" i18n-placeholder>
-          <div *ngIf="imgSrc">
-            <img [src]="imgSrc" class="square-center-cropped">
+            <input type="file" accept="image/*" (change)="selectFile($event)" multiple placeholder="Upload file" i18n-placeholder>
+          <div *ngIf="fileList.length">
+            <div *ngFor="let imgSrc of imgSrcList">
+              <img [src]="imgSrc" class="square-center-cropped">
+            </div>
           </div>
         </div>
       </div>
