@@ -1,5 +1,6 @@
 // create different dto for send data, and receive data. Server can send complex objects, but can't receive them.
 import {Customer} from "./Customer";
+import {ImageUuidContainer} from "./ImageUuidContainer";
 
 export class Issue {
   issueId: string;
@@ -11,6 +12,7 @@ export class Issue {
   timestamp: string;
   customer: Customer;
   _links: any;
+  imageUuidContainer: ImageUuidContainer[] = [];
 
 
   constructor(data: any) {
@@ -23,5 +25,6 @@ export class Issue {
     this.timestamp = data?.timestamp;
     this.customer = new Customer(data?.customer);
     this._links = data?.links;
+    this.imageUuidContainer = data?.imageUuidContainer;
   }
 }

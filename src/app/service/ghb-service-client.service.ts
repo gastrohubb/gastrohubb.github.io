@@ -156,6 +156,11 @@ export class GhbServiceClientService {
         return this.http.post<Issue>(this.uri + "/issues/", newIssue);
     }
 
+    public saveCustomerIssueWithImages(formData: FormData): Observable<Issue> {
+        formData.append('ghbUserId', this.sessionService.getUser().userId);
+        return this.http.post<Issue>(this.uri + "/customerCreateIssueWithImages/", formData);
+    }
+
     public saveCustomerIssue(newIssue: Issue): Observable<Issue> {
         const data = {
             ghbUserId: this.sessionService.getUser().userId,
