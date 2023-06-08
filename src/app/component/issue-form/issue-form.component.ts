@@ -39,6 +39,7 @@ export class IssueFormComponent {
     }
 
     save() {
+        console.log("save button pressed");
         if (!this.fileList
             || !this.issue.description
             || !this.issue.city) {
@@ -49,9 +50,11 @@ export class IssueFormComponent {
         this.ghbClient.saveCustomerIssueWithImages(issueFormData)
             .pipe(catchError(error => {
                 console.log("error saving issue:", error);
+                console.log("issue saved")
                 return new Observable<never>();
             }))
             .subscribe(issue => {
+                console.log("navigating to list of issues")
                 this.issue = new Issue(null);
                 this.imgSrcList = [];
                 this.fileList = [];
@@ -119,16 +122,19 @@ export class IssueFormComponent {
 
         for (const file of files) {
             if (file.size > maxSizePerFile) {
+                console.log(`File "${file.name}" is too big. Maximum file size is 5MB`)
                 return `File "${file.name}" is too big. Maximum file size is 5MB`;
             }
 
             if (!pattern.test(file.type)) {
+                console.log(`File "${file.name}" is not an image`)
                 return `File "${file.name}" is not an image`;
             }
             totalSize += file.size;
         }
 
         if (totalSize > maxSizeTotal) {
+            console.log("The total size of selected files exceeds the maximum limit of 50MB")
             return "The total size of selected files exceeds the maximum limit of 50MB";
         }
 

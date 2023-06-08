@@ -21,10 +21,11 @@ export class SessionUtilService {
     public getUser(): GhbUser {
         let userJson = sessionStorage.getItem("user");
         if (userJson != null) {
+            console.log('User is in session, returning');
             let user: GhbUser = GhbUser.fromJson(JSON.parse(userJson));
             return user;
         }
-        console.log('User is not is session, verify or create new');
+        console.log('User is not in session, verify or create new');
         this.getOrCreateUserAndSetUserToSession().then(user => {
             this.putUser(user);
         });
