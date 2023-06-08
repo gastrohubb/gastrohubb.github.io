@@ -60,7 +60,7 @@
                     <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                         <div class="list-card-image">
                             <a href="#">
-                                <img *ngIf="issue.photo" [src]="issue.photo"
+                                <img *ngIf="hasImages()" [src]="getImgById(issue.imageUuidContainer[1].imageUuid)"
                                      class="img-fluid w-100 square-center-cropped">
                                 <img *ngIf="!issue.photo" src="./assets/tempimg/trending1.png"
                                      class="img-fluid w-100 square-center-cropped" alt="No image">

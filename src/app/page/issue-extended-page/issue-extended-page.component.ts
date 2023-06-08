@@ -6,6 +6,7 @@ import {ContextService} from "../../service/context.service";
 import {SessionUtilService} from "../../service/session-util.service";
 import {GhbUser} from "../../dto/GhbUser";
 import {MasterApplyIssueEvent} from "../../dto/MasterApplyIssueEvent";
+import {ConfigService} from "../../service/config.service";
 
 //todo: could be divided on IssueCardMasterView and IssueCardCustomerView
 @Component({
@@ -27,6 +28,7 @@ export class IssueExtendedPageComponent {
                 private router: ActivatedRoute,
                 private navigate: Router,
                 private context: ContextService,
+                private configService: ConfigService,
                 private session: SessionUtilService) {
         this.appContext = this.context.getAppContextPath();
     }
@@ -50,8 +52,6 @@ export class IssueExtendedPageComponent {
                 });
             this.setApplyDateIfMaserApplied(id)
         }
-
-
     }
 
     private getMastersAppliedOnIssue(issueId: string) {
@@ -93,5 +93,16 @@ export class IssueExtendedPageComponent {
                 console.error(error);
             }
         });
+    }
+
+    public hasImages() {
+        console.log("image container not null " + (this.issue.imageUuidContainer != null));
+        console.log("length in container > 0 " + (this.issue.imageUuidContainer.length > 0));
+        console.log(this.issue.imageUuidContainer);
+        return this.issue.imageUuidContainer != null && this.issue.imageUuidContainer.length > 0;
+    }
+
+    getImgById(uuid: string) {
+        return this.configService.filesEndpoint() + "/" + uuid;
     }
 }
