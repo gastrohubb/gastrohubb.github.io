@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {GhbUser} from "../dto/GhbUser";
 import {KeycloakService} from "keycloak-angular";
-import {GhbServiceClientService} from "./ghb-service-client.service";
 import {KeycloakUser} from "../dto/KeycloakUser";
 import {catchError, throwError} from "rxjs";
 import {ConfigService} from "./config.service";
@@ -24,6 +23,7 @@ export class SessionUtilService {
             let user: GhbUser = GhbUser.fromJson(JSON.parse(userJson));
             return user;
         } else if (this.requestForUserDataIsInProgress) {
+            setTimeout(() => this.getUser(), 1000);
             return this.getUser();
         }
         this.requestForUserDataIsInProgress = true;
