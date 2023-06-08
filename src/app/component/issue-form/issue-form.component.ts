@@ -46,11 +46,13 @@ export class IssueFormComponent {
             this.errorMessage = $localize `All fields are required`;
             return;
         }
+        console.log("49");
         const issueFormData = this.prepareFormData(this.issue);
+        console.log("saving issue");
         this.ghbClient.saveCustomerIssueWithImages(issueFormData)
             .pipe(catchError(error => {
                 console.log("error saving issue:", error);
-                console.log("issue saved")
+                console.log("issue not saved")
                 return new Observable<never>();
             }))
             .subscribe(issue => {
@@ -65,6 +67,7 @@ export class IssueFormComponent {
     }
 
     prepareFormData(issue: Issue): FormData {
+        console.log("prepareFormData");
         const formData = new FormData();
         formData.append(
             'issue',
@@ -72,8 +75,10 @@ export class IssueFormComponent {
         );
 
         for(const element of this.fileList) {
+            console.log("appending");
             formData.append('images', element);
         }
+        console.log("returning");
         return formData;
     }
 
