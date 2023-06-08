@@ -19,7 +19,7 @@ export class IssueExtendedPageComponent {
     issue: Issue = new Issue(null);
     tries: number = 0; //todo: it not loading full data from first attempt. should be fixed.
     appContext: string;
-    txtIssueDetails: string = $localize `Issue Details`;
+    txtIssueDetails: string = $localize`Issue Details`;
     masterApplyIssueEvent: MasterApplyIssueEvent[] = [];
     applyTimestamp: any;
     masterApplyIssueEventIfMasterSession: MasterApplyIssueEvent = new MasterApplyIssueEvent(null);
@@ -96,10 +96,9 @@ export class IssueExtendedPageComponent {
     }
 
     public hasImages() {
-        console.log("image container not null " + (this.issue.imageUuidContainer != null));
-        console.log("length in container > 0 " + (this.issue.imageUuidContainer.length > 0));
-        console.log(this.issue.imageUuidContainer);
-        return this.issue.imageUuidContainer != null && this.issue.imageUuidContainer.length > 0;
+        return this.issue.imageUuidContainer != undefined
+            && this.issue.imageUuidContainer != null
+            && this.issue.imageUuidContainer.length > 0;
     }
 
     getImgById(uuid: string) {
