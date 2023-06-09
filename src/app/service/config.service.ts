@@ -15,8 +15,8 @@ export class ConfigService {
     }
 
     public apiUrl(): string {
-        // return "https://gastro.tutrit.com";
-        return "http://localhost:8080";
+        return "https://gastro.tutrit.com";
+        // return "http://localhost:8080";
     }
 
     public filesEndpoint(): string {
