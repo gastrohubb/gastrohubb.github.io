@@ -39,16 +39,7 @@ export class IssueExtendedPageComponent {
             this.ghbClient.findIssueByIdFull(id)
                 .subscribe(issue => {
                     this.issue = new Issue(issue);
-
                     this.getMastersAppliedOnIssue(issue.issueId);
-                    if (!this.issue.photo && this.tries++ < 5) {
-                        console.log("fail to load image, tries left " + (5 - this.tries));
-                        setTimeout(() => {
-                            console.log('sleep');
-                            this.ngOnInit();
-                            // And any other code that should run only after 5s
-                        }, 1000);
-                    }
                 });
             this.setApplyDateIfMaserApplied(id)
         }
@@ -103,5 +94,30 @@ export class IssueExtendedPageComponent {
 
     getImgById(uuid: string) {
         return this.configService.filesEndpoint() + "/" + uuid;
+    }
+
+    // carousel
+    slides = [
+        { img: 'http://localhost:8080/files/e3fc4bcf-682a-4428-9a2e-1c1ff9e5c8a5' },
+        { img: 'http://localhost:8080/files/b3a7e97e-4886-4ec3-ab37-ae577c3f841c' },
+        { img: 'http://localhost:8080/files/c5519d09-f041-4f26-a755-3a6127f0fe01' },
+        { img: 'http://localhost:8080/files/e3fc4bcf-682a-4428-9a2e-1c1ff9e5c8a5' },
+        { img: 'https://via.placeholder.com/600.png/654/fff' },
+    ];
+    slideConfig = { slidesToShow: 1, slidesToScroll: 1 };
+
+    slickInit(e: any) {
+
+        console.log('slick initialized');
+    }
+    breakpoint(e: any) {
+        console.log('breakpoint');
+    }
+    afterChange(e: any) {
+        console.log('afterChange');
+    }
+    beforeChange(e: any) {
+        console.log('total photos = '+ this.issue.imageUuidContainer.length)
+        console.log('beforeChange');
     }
 }

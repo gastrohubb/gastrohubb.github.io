@@ -47,6 +47,7 @@ import { FavoritesCustomerPageComponent } from './page/favorites-customer-page/f
 import { MyIssuesCustomerPageComponent } from './page/my-issues-customer-page/my-issues-customer-page.component';
 import {initializeKeycloak} from "./init/keycloak-init.factory";
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import {SlickCarouselModule} from "ngx-slick-carousel";
 
 @NgModule({
     declarations: [
@@ -96,7 +97,8 @@ import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
-        KeycloakAngularModule
+        KeycloakAngularModule,
+        SlickCarouselModule
     ],
     providers: [
         HttpClientModule,

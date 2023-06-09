@@ -59,12 +59,13 @@
                 <div class="osahan-slider-item px-1 py-3">
                     <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                         <div class="list-card-image">
-                            <a href="#">
-                                <img *ngIf="hasImages()" [src]="getImgById(issue.imageUuidContainer[0].imageUuid)"
-                                     class="img-fluid w-100 square-center-cropped">
-                                <img *ngIf="!issue.photo" src="./assets/tempimg/trending1.png"
-                                     class="img-fluid w-100 square-center-cropped" alt="No image">
-                            </a>
+                            <ngx-slick-carousel class="carousel"
+                                                #slickModal="slick-carousel"
+                                                [config]="slideConfig">
+                                <div ngxSlickItem *ngFor="let slide of issue.imageUuidContainer" class="slide">
+                                    <img [src]="getImgById(slide.imageUuid)" alt="" width="100%">
+                                </div>
+                            </ngx-slick-carousel>
                         </div>
                     </div>
                 </div>
@@ -75,7 +76,8 @@
             <p class="font-weight-bold px-3 pt-3 m-0" i18n>Masters applied</p>
             <div *ngFor="let masterApplyEvent of masterApplyIssueEvent">
                 <app-master-apply-event-info-card-in-list
-                        [masterApplyEvent]="masterApplyEvent"></app-master-apply-event-info-card-in-list>
+                        [masterApplyEvent]="masterApplyEvent">
+                </app-master-apply-event-info-card-in-list>
             </div>
         </div>
     </div>

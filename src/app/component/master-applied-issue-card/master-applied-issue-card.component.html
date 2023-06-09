@@ -2,8 +2,8 @@
     <div class="d-flex align-items-start list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
         <div class="list-card-image">
             <a [href]="contextPath + '/issues/'+masterApplyIssueEvent.issue.issueId">
-                <img *ngIf="masterApplyIssueEvent.issue.photo" [src]="masterApplyIssueEvent.issue.photo" class="img-fluid item-img w-100 square-center-cropped">
-                <img *ngIf="!masterApplyIssueEvent.issue.photo" src="./assets/tempimg/sales1.png" class="img-fluid item-img w-100 square-center-cropped">
+                <img *ngIf="hasImages()" [src]="getImgById(masterApplyIssueEvent.issue.imageUuidContainer[0].thumbnailUuid)" class="img-fluid item-img w-100 square-center-cropped">
+                <img *ngIf="!hasImages()" src="./assets/tempimg/sales1.png" class="img-fluid item-img w-100 square-center-cropped">
             </a>
         </div>
         <div class="p-3 position-relative">
