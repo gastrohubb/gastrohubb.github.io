@@ -5,3 +5,14 @@
 .active-link {
 
 }
+
+.alerts-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999; /* Ensure the alerts appear above other elements */
+}
+
+.alerts-container .alert {
+    margin-bottom: 10px;
+}

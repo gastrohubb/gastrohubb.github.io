@@ -2,10 +2,13 @@ import {Injectable} from '@angular/core';
 import {GhbUser} from "../dto/GhbUser";
 import {KeycloakService} from "keycloak-angular";
 import {KeycloakUser} from "../dto/KeycloakUser";
-import {catchError, throwError} from "rxjs";
 import {ConfigService} from "./config.service";
 import {HttpClient} from "@angular/common/http";
 import {KeycloakProfile} from "keycloak-js";
+import {Customer} from "../dto/Customer";
+import {CustomerService} from "./customer.service";
+import {AlertService} from "./alert.service";
+import {Master} from "../dto/Master";
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +18,20 @@ export class SessionUtilService {
 
     constructor(private keycloak: KeycloakService,
                 private config: ConfigService,
-                private http: HttpClient) {
+                private http: HttpClient,
+                private customerService: CustomerService,
+                private alertService: AlertService
+    ) {
+    }
+
+    // todo: cache in session
+    public async getCustomer(): Promise<Customer | null> {
+        let userJson = sessionStorage.getItem("user");
+        if (userJson != null) {
+            let customer = await this.customerService.findCustomerByGhbUserIdAwait(this.getUser().userId)
+            return customer;
+        }
+        return null;
     }
 
     public getUser(): GhbUser {
@@ -98,6 +114,7 @@ export class SessionUtilService {
         return new GhbUser();
         // todo: consider pattern emptyObject|null|undefined
     }
+
     public setUserToSession(user: GhbUser) {
         this.putUser(user);
     }
@@ -105,5 +122,61 @@ export class SessionUtilService {
     async isLoggedIn(): Promise<boolean> {
         const isLoggedIn = await this.keycloak.isLoggedIn();
         return isLoggedIn;
+    }
+
+    async checkIfCustomerFillInfo() {
+        let customer = await this.getCustomer();
+        if (customer == null
+            || customer.name == "anonymous"
+            || customer.name == null
+            || customer.name.length == 0
+            || customer.phone == "phone doesn't set"
+            || customer.phone == null
+            || customer.phone.length == 0
+            || customer.ownerName == "anonymous"
+            || customer.ownerName == null
+            || customer.ownerName.length == 0) {
+            for (let alert of this.alertService.alerts) {
+                if (alert.elementId == "warning-info-absent") {
+                    return false;
+                }
+            }
+            this.alertService.addAlert("Add customer info in profile", "warning-info-absent")
+            return false;
+        }
+        return true;
+    }
+
+    async checkIfMasterFillInfo() {
+        let master = await this.getMaster();
+        if (master == null
+            || master.name == null
+            || master.name.length == 0
+            || master.domain == null
+            || master.domain.length == 0
+            || master.experience == null
+            || master.experience.length == 0
+            || master.workplace == null
+            || master.workplace.length == 0) {
+            for (let alert of this.alertService.alerts) {
+                if (alert.elementId == "warning-info-absent") {
+                    return false;
+                }
+            }
+            this.alertService.addAlert("Add master info in profile", "warning-info-absent")
+            return false;
+        }
+        return true;
+    }
+
+    // todo: cache in session
+    private async getMaster(): Promise<Master | null> {
+        let userJson = sessionStorage.getItem("user");
+        if (userJson != null) {
+            let master = await this.customerService.findMasterByGhbUserIdAwait(this.getUser().userId)
+            return master;
+        }
+        return null;
+
     }
 }

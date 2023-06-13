@@ -70,6 +70,13 @@ export class GhbServiceClientService {
     public findCustomerByGhbUserId(id: string): Observable<Customer> {
         return this.http.get<Customer>(this.uri + "/customers/search/findByGhbUser_UserId?ghbUserId=" + id);
     }
+    public async findCustomerByGhbUserIdAwait(id: string): Promise<Customer | null> {
+        const response = await this.http.get<Customer>(this.uri + "/customers/search/findByGhbUser_UserId?ghbUserId=" + id).toPromise();
+        if (response === undefined) {
+            return null;
+        }
+        return response;
+    }
 
     public updateUser(user: GhbUser): Observable<GhbUser> {
         return this.http.patch<GhbUser>(this.uri + "/ghbUsers/" + user.userId, user);
