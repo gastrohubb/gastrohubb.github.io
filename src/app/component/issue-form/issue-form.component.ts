@@ -1,9 +1,10 @@
 import {Component, Input} from '@angular/core';
 import {Issue} from "../../dto/Issue";
 import {GhbServiceClientService} from "../../service/ghb-service-client.service";
-import {catchError, filter, Observable, pairwise} from "rxjs";
-import {Router, RoutesRecognized} from "@angular/router";
+import {catchError, Observable} from "rxjs";
+import {Router} from "@angular/router";
 import {ContextService} from "../../service/context.service";
+import {SessionUtilService} from "../../service/session-util.service";
 
 @Component({
     selector: 'app-issue-form',
@@ -20,13 +21,22 @@ export class IssueFormComponent {
 
     constructor(private ghbClient: GhbServiceClientService,
                 private router: Router,
-                private context: ContextService) {
+                private context: ContextService,
+                private session: SessionUtilService) {
 
     }
 
     ngOnInit() {
         let path: string = this.context.getAppContextPath();
         this.previousPage = path + "/home";
+        console.log("is customer info filled? " + this.session.checkIfCustomerFillInfo())
+        this.session.checkIfCustomerFillInfo().then(test => {
+            if (!test) {
+                let path: string = this.context.getAppContextPath();
+                this.router.navigate([path + '/profile'])
+            }
+        });
+
 
         // todo: navigation to previous page stops working, fix it. for now navigating to home.
         // this.router.events
@@ -43,7 +53,7 @@ export class IssueFormComponent {
         if (!this.fileList
             || !this.issue.description
             || !this.issue.city) {
-            this.errorMessage = $localize `All fields are required`;
+            this.errorMessage = $localize`All fields are required`;
             return;
         }
         console.log("49");
@@ -74,7 +84,7 @@ export class IssueFormComponent {
             new Blob([JSON.stringify(issue)], {type: 'application/json'})
         );
 
-        for(const element of this.fileList) {
+        for (const element of this.fileList) {
             console.log("appending");
             formData.append('images', element);
         }

@@ -58,18 +58,27 @@ export class IssueExtendedPageComponent {
 
     onApplyClicked(event: Event) {
         event.preventDefault();
-        let user: GhbUser = this.session.getUser();
-        let userId = user.userId;
-        let issueId = this.issue.issueId;
-        this.ghbClient.saveMasterApplyIssueEvent(userId, issueId).subscribe({
-            next: (response: MasterApplyIssueEvent) => {
-                this.applyTimestamp = response.applyTimestamp;
-                this.masterApplyIssueEventIfMasterSession = new MasterApplyIssueEvent(response);
-            },
-            error: (error: any) => {
-                console.error(error);
+        this.session.checkIfMasterFillInfo().then(test => {
+            if (!test) {
+                let path: string = this.context.getAppContextPath();
+                this.navigate.navigate([path + '/profile'])
+            } else {
+
+                let user: GhbUser = this.session.getUser();
+                let userId = user.userId;
+                let issueId = this.issue.issueId;
+                this.ghbClient.saveMasterApplyIssueEvent(userId, issueId).subscribe({
+                    next: (response: MasterApplyIssueEvent) => {
+                        this.applyTimestamp = response.applyTimestamp;
+                        this.masterApplyIssueEventIfMasterSession = new MasterApplyIssueEvent(response);
+                    },
+                    error: (error: any) => {
+                        console.error(error);
+                    }
+                });
             }
         });
+
     }
 
     private setApplyDateIfMaserApplied(issueId: string) {

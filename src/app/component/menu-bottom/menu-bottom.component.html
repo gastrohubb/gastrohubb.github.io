@@ -1,47 +1,65 @@
 <div class="osahan-menu-fotter fixed-bottom bg-white px-3 py-2 text-center">
-  <div class="row">
+    <div class="row">
 
-    <div [ngClass]="isActive(home) ? 'col selected' : 'col'">
-      <a [routerLink]="home" [ngClass]="isActive(home) ? activeLinkClass : linkClass">
-        <p class="h4 m-0"><i [className]="homeIconClass"></i></p>
-        <span *ngIf="this.context.getAppContextPath() == 'master'" i18n="master | home button master case">Home</span>
-        <span *ngIf="this.context.getAppContextPath() == 'customer'" i18n="customer | home button customer case">Home</span>
-      </a>
-    </div>
+        <div [ngClass]="isActive(home) ? 'col selected' : 'col'">
+            <a [routerLink]="home" [ngClass]="isActive(home) ? activeLinkClass : linkClass">
+                <p class="h4 m-0"><i [className]="homeIconClass"></i></p>
+                <span *ngIf="this.context.getAppContextPath() == 'master'"
+                      i18n="master | home button master case">Home</span>
+                <span *ngIf="this.context.getAppContextPath() == 'customer'"
+                      i18n="customer | home button customer case">Home</span>
+            </a>
+        </div>
 
-    <div [ngClass]="isActive(myIssues) ? 'col selected' : 'col'">
-      <a [routerLink]="myIssues" [ngClass]="isActive(myIssues) ? activeLinkClass : linkClass">
-        <p class="h4 m-0"><i [className]="myIssuesIconClass"></i></p>
-        <span *ngIf="this.context.getAppContextPath() == 'master'" i18n="master | trending button master case">Trending</span>
-        <span *ngIf="this.context.getAppContextPath() == 'customer'" i18n="customer | trending button customer case">Trending</span>
-      </a>
-    </div>
+        <div [ngClass]="isActive(myIssues) ? 'col selected' : 'col'">
+            <a [routerLink]="myIssues" [ngClass]="isActive(myIssues) ? activeLinkClass : linkClass">
+                <p class="h4 m-0"><i [className]="myIssuesIconClass"></i></p>
+                <span *ngIf="this.context.getAppContextPath() == 'master'" i18n="master | trending button master case">Trending</span>
+                <span *ngIf="this.context.getAppContextPath() == 'customer'"
+                      i18n="customer | trending button customer case">Trending</span>
+            </a>
+        </div>
 
-    <div
-            *ngIf="isCustomer()"
-            (click)="canActivateOrRedirectToLogin()"
-            class="col bg-white rounded-circle mt-n4 px-3 py-2">
-      <div class="bg-danger rounded-circle mt-n0 shadow">
-        <a [routerLink]="issueForm" class="text-white small font-weight-bold text-decoration-none">
-          <i class="feather-shopping-cart"></i>
-        </a>
-      </div>
-    </div>
+        <div
+                *ngIf="isCustomer()"
+                (click)="canActivateOrRedirectToLogin()"
+                class="col bg-white rounded-circle mt-n4 px-3 py-2">
+            <div class="bg-danger rounded-circle mt-n0 shadow">
+                <a [routerLink]="issueForm" class="text-white small font-weight-bold text-decoration-none">
+                    <i class="feather-shopping-cart"></i>
+                </a>
+            </div>
+        </div>
 
-    <div [ngClass]="isActive(favorites) ? 'col selected' : 'col'">
-      <a [routerLink]="favorites" [ngClass]="isActive(favorites) ? activeLinkClass : linkClass">
-        <p class="h4 m-0"><i [className]="favoritesIconClass"></i></p>
-        <span *ngIf="this.context.getAppContextPath() == 'master'" i18n="master | favorites button master case">Favorites</span>
-        <span *ngIf="this.context.getAppContextPath() == 'customer'" i18n="customer | favorites button customer case">Favorites</span>
-      </a>
-    </div>
-    <div [ngClass]="isActive(profile) ? 'col selected' : 'col'">
-      <a [routerLink]="profile" [ngClass]="isActive(profile) ? activeLinkClass : linkClass">
-        <p class="h4 m-0"><i [className]="profileIconClass" ></i></p>
-        <span *ngIf="this.context.getAppContextPath() == 'master'" i18n="master | profile button master case">Profile</span>
-        <span *ngIf="this.context.getAppContextPath() == 'customer'" i18n="customer | profile button customer case">Profile</span>
-      </a>
-    </div>
+        <div [ngClass]="isActive(favorites) ? 'col selected' : 'col'">
+            <a [routerLink]="favorites" [ngClass]="isActive(favorites) ? activeLinkClass : linkClass">
+                <p class="h4 m-0"><i [className]="favoritesIconClass"></i></p>
+                <span *ngIf="this.context.getAppContextPath() == 'master'" i18n="master | favorites button master case">Favorites</span>
+                <span *ngIf="this.context.getAppContextPath() == 'customer'"
+                      i18n="customer | favorites button customer case">Favorites</span>
+            </a>
+        </div>
+        <div [ngClass]="isActive(profile) ? 'col selected' : 'col'">
+            <a [routerLink]="profile" [ngClass]="isActive(profile) ? activeLinkClass : linkClass">
+                <p class="h4 m-0"><i [className]="profileIconClass"></i></p>
+                <span *ngIf="this.context.getAppContextPath() == 'master'" i18n="master | profile button master case">Profile</span>
+                <span *ngIf="this.context.getAppContextPath() == 'customer'"
+                      i18n="customer | profile button customer case">Profile</span>
+            </a>
+        </div>
 
-  </div>
+    </div>
 </div>
+
+<div *ngIf="alertService.alerts.length > 0" class="alerts-container" #alertsContainer>
+    <div *ngFor="let alert of alertService.alerts">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" [id]="alert.elementId">
+            {{ alert.message }}
+            <button type="button" class="close" (click)="dismissAlert(alert)" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!--             *ngIf="!isElementInDom(alert.elementId)"-->

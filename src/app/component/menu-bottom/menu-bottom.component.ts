@@ -1,7 +1,10 @@
-import {Component, Input} from '@angular/core';
+import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {AuthGuardService} from "../../service/auth-guard.service";
 import {ContextService} from "../../service/context.service";
 import {Router} from "@angular/router";
+import {AlertService} from "../../service/alert.service";
+import {SessionUtilService} from "../../service/session-util.service";
+
 
 @Component({
     selector: 'app-menu-bottom',
@@ -9,6 +12,8 @@ import {Router} from "@angular/router";
     styleUrls: ['./menu-bottom.component.css']
 })
 export class MenuBottomComponent {
+    @ViewChild('alertsContainer', { static: false }) alertsContainer!: ElementRef;
+
     @Input()
     appContext: string = "";
     appContextPath: string = window.location.pathname;
@@ -47,10 +52,13 @@ export class MenuBottomComponent {
 
     constructor(private authGuardService: AuthGuardService,
                 public context: ContextService,
-                private router: Router) {
+                private router: Router,
+                public alertService: AlertService,
+                public sessionUtil: SessionUtilService) {
     }
 
     ngOnInit(): void {
+
         let userJson = sessionStorage.getItem("user");
         if (userJson != null) {
             this.user = userJson;
@@ -123,6 +131,12 @@ export class MenuBottomComponent {
                 this.profileIconClass = "feather-user";
                 break;
         }
+
+        for (let alert of this.alertService.alerts) {
+            if (document.getElementById(alert.elementId)) {
+                this.alertService.dismissAlert(alert)
+            }
+        }
     }
 
     private setRoleContextToNavigationLinks() {
@@ -149,9 +163,11 @@ export class MenuBottomComponent {
     }
 
     canActivateOrRedirectToLogin(): boolean {
+    //     console.log("canActivateOrRedirectToLogin")
+    //     return this.checkIfCustomerFillInfo()
+    //     // todo: add secure
+    //     // return this.authGuardService.canActivateOrRedirectToLogin();
         return true;
-        // todo: add secure
-        // return this.authGuardService.canActivateOrRedirectToLogin();
     }
 
     canActivateOrNot(): boolean {
@@ -162,5 +178,11 @@ export class MenuBottomComponent {
 
     isCustomer() {
         return this.appContext === 'customer'
+
+        ;
+    }
+
+    dismissAlert(alert: any) {
+        this.alertService.dismissAlert(alert);
     }
 }
