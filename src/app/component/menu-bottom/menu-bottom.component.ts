@@ -4,6 +4,7 @@ import {ContextService} from "../../service/context.service";
 import {Router} from "@angular/router";
 import {AlertService} from "../../service/alert.service";
 import {SessionUtilService} from "../../service/session-util.service";
+import {NotificationService} from "../../service/notification.service";
 
 
 @Component({
@@ -54,11 +55,12 @@ export class MenuBottomComponent {
                 public context: ContextService,
                 private router: Router,
                 public alertService: AlertService,
-                public sessionUtil: SessionUtilService) {
+                public sessionUtil: SessionUtilService,
+                public notifications: NotificationService) {
     }
 
     ngOnInit(): void {
-
+        this.notifications.startCheckingEndpoint();
         let userJson = sessionStorage.getItem("user");
         if (userJson != null) {
             this.user = userJson;
@@ -137,6 +139,8 @@ export class MenuBottomComponent {
                 this.alertService.dismissAlert(alert)
             }
         }
+
+
     }
 
     private setRoleContextToNavigationLinks() {
