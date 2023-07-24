@@ -13,6 +13,8 @@ export class Issue {
   customer: Customer;
   _links: any;
   imageUuidContainer: ImageUuidContainer[] = [];
+  lat: string;
+  lng: string;
 
 
   constructor(data: any) {
@@ -26,5 +28,7 @@ export class Issue {
     this.customer = new Customer(data?.customer);
     this._links = data?.links;
     this.imageUuidContainer = data?.imageUuidContainer;
+    this.lat = data?.lat;
+    this.lng = data?.lng;
   }
 }

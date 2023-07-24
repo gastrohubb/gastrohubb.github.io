@@ -49,6 +49,7 @@ import {initializeKeycloak} from "./init/keycloak-init.factory";
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import {SlickCarouselModule} from "ngx-slick-carousel";
 import { AlertComponent } from './component/alert/alert.component';
+import {GoogleMap, GoogleMapsModule} from "@angular/google-maps";
 
 @NgModule({
     declarations: [
@@ -100,10 +101,12 @@ import { AlertComponent } from './component/alert/alert.component';
         HttpClientModule,
         FormsModule,
         KeycloakAngularModule,
-        SlickCarouselModule
+        SlickCarouselModule,
+        GoogleMapsModule,
     ],
     providers: [
         HttpClientModule,
+        GoogleMap,
         DatePipe,
         {
             provide: APP_INITIALIZER,

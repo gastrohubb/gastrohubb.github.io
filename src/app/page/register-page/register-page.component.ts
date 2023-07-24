@@ -66,6 +66,7 @@ export class RegisterPageComponent {
           return throwError(() => new Error(error));
         }))
       .subscribe((user) => {
+        console.log("should not being used");
         sessionStorage.setItem("user", JSON.stringify(user));
         this.router.navigate([this.appContext + '/home'])
       })

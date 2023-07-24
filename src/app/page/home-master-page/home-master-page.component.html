@@ -1,4 +1,19 @@
 <app-page-header [title]="txtIssues"></app-page-header>
+<google-map #mapRef
+            [options]="mapOptions"
+            (centerChanged)="onMapCenterChanged()"
+            (dragend)="onDragEnd()"
+            (zoomChanged)="onMapCenterChanged()"
+            (mapInitialized)="onMapInitialized()"
+            (boundsChanged)="onMapCenterChanged()"
+            (idle)="onMapIdle()" >
+    <map-marker *ngFor="let i of issues"
+                [position]="{lat: +i.lat, lng: +i.lng}"
+                [options]="markerOptions"
+                (click)="onMarkerClick(i)">
+    </map-marker>
+</google-map>
+
 <app-issue-list
         [issues]="issues"
         [contextPath]="contextPath"></app-issue-list>
