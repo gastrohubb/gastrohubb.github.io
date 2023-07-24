@@ -39,8 +39,16 @@ export class SessionUtilService {
         if (userJson != null) {
             console.log('User is in session, returning');
             let user: GhbUser = GhbUser.fromJson(JSON.parse(userJson));
+            console.log(user.userId);
+            if (user.userId == undefined ) {
+                console.log('User had undefined id, recreating user');
+                this.getOrCreateUserAndSetUserToSession().then(user => {
+                    this.putUser(user);
+                });
+            }
             return user;
         }
+
         console.log('User is not in session, verify or create new');
         this.getOrCreateUserAndSetUserToSession().then(user => {
             this.putUser(user);
@@ -62,6 +70,7 @@ export class SessionUtilService {
     }
 
     public putUser(user: GhbUser) {
+        console.log("putting user to session")
         sessionStorage.setItem("user", JSON.stringify(user));
     }
 

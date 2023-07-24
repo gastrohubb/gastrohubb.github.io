@@ -11,6 +11,7 @@ import {FileUploadService} from "./file-upload.service";
 import {ConfigService} from "./config.service";
 import {MasterApplyIssueEvent} from "../dto/MasterApplyIssueEvent";
 import {KeycloakUser} from "../dto/KeycloakUser";
+import {MapBounds} from "../dto/map-bounds";
 
 @Injectable({
     providedIn: 'root'
@@ -64,13 +65,18 @@ export class GhbServiceClientService {
     }
 
     public findMasterByGhbUserId(id: string): Observable<Master> {
+        console.log("1");
         return this.http.get<Master>(this.uri + "/masters/search/findByGhbUser_UserId?ghbUserId=" + id);
     }
 
     public findCustomerByGhbUserId(id: string): Observable<Customer> {
+        console.log("2");
+        console.log(console.log(this.sessionService.getUser()));
+        this.sessionService.getUserKeycloakProfile().then(p => console.log("keycloak user " + p));
         return this.http.get<Customer>(this.uri + "/customers/search/findByGhbUser_UserId?ghbUserId=" + id);
     }
     public async findCustomerByGhbUserIdAwait(id: string): Promise<Customer | null> {
+        console.log("3");
         const response = await this.http.get<Customer>(this.uri + "/customers/search/findByGhbUser_UserId?ghbUserId=" + id).toPromise();
         if (response === undefined) {
             return null;
@@ -89,6 +95,14 @@ export class GhbServiceClientService {
     public getPageOfIssues(page: number): Observable<any> {
         return this.http.get<Issue>(this.uri + "/issues/?projection=full&size=20&page=" + page + "&sort=timestamp,desc");
     }
+
+    public getIssuesByCoordinates(mapBounds: MapBounds): Observable<any> {
+        return this.http.post<Issue>(this.uri + "/search/issues", mapBounds);
+    }
+
+    // public getIssuesByCoordinates(mapBounds: MapBounds): Observable<any> {
+    //     return this.http.get<Issue>(this.uri + "/search/issues/"+mapBounds.left+"/"+mapBounds.right+"/"+mapBounds.top+"/"+mapBounds.bottom+"/");
+    // }
 
     public getPageOfMasters(page: number): Observable<any> {
         return this.http.get<Issue>(this.uri + "/masters/?projection=full&size=20&page=" + page);
@@ -166,6 +180,10 @@ export class GhbServiceClientService {
     public saveCustomerIssueWithImages(formData: FormData): Observable<Issue> {
         formData.append('ghbUserId', this.sessionService.getUser().userId);
         return this.http.post<Issue>(this.uri + "/customerCreateIssueWithImages/", formData);
+    }
+
+    public getAddressByCoordinate(lat: string, lng: string): Observable<any> {
+        return this.http.get<any>(this.uri + "//api/geocode/json/"+lat+"/"+lng+"/");
     }
 
     public saveCustomerIssue(newIssue: Issue): Observable<Issue> {

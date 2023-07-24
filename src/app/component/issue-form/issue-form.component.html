@@ -17,23 +17,42 @@
                       placeholder="Enter issue details here"
                       type="text"
                       class="form-control"
-                      required></textarea>
+            required></textarea>
           </div>
           <div class="col-md-12 form-group">
-            <label class="form-label" i18n>In which city it should be done ?</label>
+            <label class="form-label" i18n>In which city it should be done ? </label>
+            <p *ngIf="address"> address {{address | json}}</p>
+<!--                        [width]="1200"-->
+<!--                        [height]="600"-->
+            <google-map [options]="mapOptions"
+                        (centerChanged)="onMapCenterChanged()"
+                        (dragend)="onDragEnd()"
+                        (zoomChanged)="onMapCenterChanged()"
+                        (mapInitialized)="onMapCenterChanged()"
+                        (boundsChanged)="onMapCenterChanged()" >
+                <map-marker [position]="centerMarker" [options]="markerOptions" ></map-marker>
+            </google-map>
             <input [(ngModel)]="issue.city"
                    placeholder="Enter city here"
-                   type="text"
+                   type="hidden"
                    class="form-control"
                    required/>
           </div>
           <div class="col-md-12 form-group">
-            <label class="form-label" i18n>Enter restaurant address</label>
-            <input [(ngModel)]="issue.address"
+<!--            <label class="form-label" i18n>Enter restaurant address</label>-->
+            <input [(ngModel)]="address"
                    placeholder="Enter address"
-                   type="text"
+                   type="hidden"
                    class="form-control"
                    required/>
+              <input [(ngModel)]="mapCenterLng"
+                     type="hidden"
+                     class="form-control"
+                     required/>
+              <input [(ngModel)]="mapCenterLat"
+                     type="hidden"
+                     class="form-control"
+                     required/>
           </div>
           <div class="col-md-12 form-group">
             <label class="form-label" i18n>Add image file (picture) from Gallery</label>
